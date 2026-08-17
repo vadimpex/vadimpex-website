@@ -1,0 +1,681 @@
+<title>VADIMPEX — Three Directions for the New Website</title>
+<style>
+/*FONTS*/
+
+/* ---------- page tokens (theme-aware) ---------- */
+:root{
+  --pg-bg:#FBFAF9;
+  --pg-surface:#FFFFFF;
+  --pg-ink:#22282A;
+  --pg-soft:#5E6769;
+  --pg-line:#E4DEDB;
+  --pg-line-strong:#CFC7C3;
+  --pg-red:#C81C08;
+  --pg-red-bright:#F83018;
+  --pg-shadow:0 1px 2px rgba(34,40,42,.05), 0 12px 32px -12px rgba(34,40,42,.18);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --pg-bg:#141718;
+    --pg-surface:#1C2021;
+    --pg-ink:#ECE8E6;
+    --pg-soft:#9BA3A5;
+    --pg-line:#2E3436;
+    --pg-line-strong:#414849;
+    --pg-red:#FF6B54;
+    --pg-red-bright:#F83018;
+    --pg-shadow:0 1px 2px rgba(0,0,0,.4), 0 16px 40px -14px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --pg-bg:#141718;
+  --pg-surface:#1C2021;
+  --pg-ink:#ECE8E6;
+  --pg-soft:#9BA3A5;
+  --pg-line:#2E3436;
+  --pg-line-strong:#414849;
+  --pg-red:#FF6B54;
+  --pg-red-bright:#F83018;
+  --pg-shadow:0 1px 2px rgba(0,0,0,.4), 0 16px 40px -14px rgba(0,0,0,.7);
+}
+
+/* ---------- mock tokens (fixed: these depict light websites) ---------- */
+:root{
+  --m-red:#F83018;
+  --m-red-ink:#C81C08;
+  --m-ink:#22282A;
+  --m-soft:#5E6769;
+  --m-paper:#FFFFFF;
+  --m-paper-warm:#F5F1EF;
+  --m-line:#E7E1DE;
+}
+
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--pg-bg);
+  color:var(--pg-ink);
+  font-family:'IBM Plex Sans','Segoe UI',system-ui,sans-serif;
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px;}
+.narrow{max-width:66ch;}
+
+h1,h2,h3,.display{font-family:'Archivo','Segoe UI',system-ui,sans-serif;text-wrap:balance;}
+.eyebrow{
+  font-family:'IBM Plex Mono',ui-monospace,monospace;
+  font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--pg-soft);margin:0;
+}
+a{color:var(--pg-red);}
+a:focus-visible,button:focus-visible{outline:2px solid var(--pg-red);outline-offset:3px;}
+
+/* ---------- masthead ---------- */
+.masthead{padding:72px 0 40px;border-bottom:1px solid var(--pg-line);}
+.masthead h1{
+  font-size:clamp(2.3rem,5.4vw,3.9rem);font-weight:900;letter-spacing:-.035em;
+  line-height:1.02;margin:.5rem 0 0;text-transform:uppercase;
+}
+.masthead h1 em{font-style:normal;color:var(--pg-red);}
+.lede{font-size:1.1rem;color:var(--pg-soft);margin:22px 0 0;max-width:60ch;}
+.meta{
+  display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:32px;
+  font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:.74rem;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--pg-soft);
+}
+.meta span{display:flex;gap:8px;align-items:center;}
+.meta span::before{content:"";width:6px;height:6px;background:var(--pg-red);flex:none;}
+
+section{padding:64px 0;border-bottom:1px solid var(--pg-line);}
+.sec-head{display:flex;flex-direction:column;gap:6px;margin-bottom:36px;}
+.sec-head h2{
+  font-size:clamp(1.5rem,3vw,2.1rem);font-weight:800;letter-spacing:-.02em;
+  margin:0;text-transform:uppercase;
+}
+.sec-head p{margin:8px 0 0;color:var(--pg-soft);max-width:62ch;}
+
+/* ---------- foundations ---------- */
+.found-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:36px;}
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px;}
+.sw{border:1px solid var(--pg-line);background:var(--pg-surface);}
+.sw i{display:block;height:64px;}
+.sw b{
+  display:block;padding:8px 10px 2px;font-family:'IBM Plex Mono',monospace;
+  font-size:.72rem;font-weight:500;letter-spacing:.04em;
+}
+.sw small{display:block;padding:0 10px 9px;color:var(--pg-soft);font-size:.72rem;line-height:1.4;}
+
+.specimen{border:1px solid var(--pg-line);background:var(--pg-surface);padding:26px;}
+.specimen .big{
+  font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(2rem,5vw,3rem);
+  letter-spacing:-.04em;line-height:.95;text-transform:uppercase;margin:0 0 4px;
+}
+.specimen .mid{font-size:1rem;margin:14px 0 0;color:var(--pg-soft);}
+.specimen .mono{
+  font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.06em;
+  text-transform:uppercase;margin:16px 0 0;color:var(--pg-ink);
+}
+.specimen hr{border:0;border-top:1px solid var(--pg-line);margin:20px 0;}
+.role{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--pg-soft);display:block;margin-bottom:6px;}
+
+.mark-explain{display:grid;grid-template-columns:minmax(0,1fr);gap:22px;align-items:center;}
+@media(min-width:760px){.mark-explain{grid-template-columns:280px minmax(0,1fr);gap:40px;}}
+.mark-box{border:1px solid var(--pg-line);background:#fff;padding:26px;display:grid;place-items:center;}
+.mark-box img{width:100%;height:auto;display:block;}
+
+/* ---------- direction blocks ---------- */
+.dir-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:14px;margin-bottom:6px;}
+.dir-tag{
+  font-family:'IBM Plex Mono',monospace;font-size:.72rem;font-weight:500;letter-spacing:.14em;
+  background:var(--pg-red);color:#fff;padding:4px 9px;text-transform:uppercase;
+}
+.dir-head h2{font-size:clamp(1.6rem,3.4vw,2.3rem);font-weight:900;letter-spacing:-.03em;margin:0;text-transform:uppercase;}
+.thesis{font-size:1.05rem;color:var(--pg-soft);max-width:64ch;margin:10px 0 0;}
+.readout{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;
+  border:1px solid var(--pg-line);border-bottom:0;margin:26px 0 0;background:var(--pg-surface);
+}
+.readout div{padding:14px 16px;border-bottom:1px solid var(--pg-line);}
+.readout div + div{border-left:1px solid var(--pg-line);}
+@media(max-width:640px){.readout div + div{border-left:0;}}
+.readout dt{
+  font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--pg-soft);margin:0 0 4px;
+}
+.readout dd{margin:0;font-size:.92rem;line-height:1.45;}
+
+/* ---------- browser frame ---------- */
+.frame{
+  margin-top:26px;border:1px solid var(--pg-line-strong);background:var(--m-paper);
+  box-shadow:var(--pg-shadow);overflow:hidden;
+}
+.chrome{
+  display:flex;align-items:center;gap:8px;padding:9px 12px;
+  background:#EDE9E7;border-bottom:1px solid #DCD5D2;
+}
+.chrome i{width:9px;height:9px;border-radius:50%;background:#C9C1BD;flex:none;}
+.chrome span{
+  margin-left:8px;font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:#77706C;
+  letter-spacing:.04em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.screen{position:relative;color:var(--m-ink);}
+
+/* site header inside mocks */
+.s-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 26px;}
+.s-nav .logo{height:22px;width:auto;display:block;}
+.s-links{display:flex;gap:18px;align-items:center;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--m-soft);}
+.s-links b{font-weight:500;}
+.s-links .lang{font-family:'IBM Plex Mono',monospace;border:1px solid var(--m-line);padding:3px 7px;letter-spacing:.1em;}
+.s-links .lang em{font-style:normal;color:var(--m-red-ink);font-weight:500;}
+@media(max-width:640px){.s-links b:nth-child(n+3){display:none;}}
+
+.s-btn{
+  display:inline-block;background:var(--m-red-ink);color:#fff;text-decoration:none;
+  font-size:.82rem;font-weight:500;padding:11px 20px;letter-spacing:.02em;
+}
+.s-btn.ghost{background:transparent;color:var(--m-ink);border:1px solid var(--m-ink);}
+.s-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;}
+
+.s-eyebrow{
+  font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--m-red-ink);margin:0 0 16px;
+}
+.s-h1{
+  font-family:'Archivo',sans-serif;font-weight:900;letter-spacing:-.04em;line-height:.94;
+  text-transform:uppercase;margin:0;color:var(--m-ink);
+}
+.s-sub{color:var(--m-soft);margin:18px 0 0;max-width:44ch;font-size:.95rem;}
+
+/* facts strip */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));border-top:1px solid var(--m-line);}
+.facts div{padding:18px 26px;}
+.facts div + div{border-left:1px solid var(--m-line);}
+.facts b{
+  display:block;font-family:'Archivo',sans-serif;font-weight:800;font-size:1.5rem;
+  letter-spacing:-.02em;color:var(--m-red-ink);line-height:1;
+}
+.facts small{
+  display:block;margin-top:7px;font-family:'IBM Plex Mono',monospace;font-size:.64rem;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--m-soft);
+}
+
+/* ---------- Direction A ---------- */
+.a-hero{display:grid;grid-template-columns:minmax(0,1fr);border-top:1px solid var(--m-line);}
+@media(min-width:820px){.a-hero{grid-template-columns:1.15fr .85fr;}}
+.a-copy{padding:56px 26px 52px;}
+.a-copy .s-h1{font-size:clamp(2rem,4.6vw,3.15rem);}
+.a-art{position:relative;min-height:240px;border-left:1px solid var(--m-line);overflow:hidden;background:#FCFAF9;}
+@media(max-width:819px){.a-art{border-left:0;border-top:1px solid var(--m-line);}}
+
+/* ---------- Direction B ---------- */
+.b-screen{background:var(--m-paper-warm);}
+.b-hero{display:grid;grid-template-columns:minmax(0,1fr);gap:0;border-top:1px solid #E6DFDB;}
+@media(min-width:820px){.b-hero{grid-template-columns:1fr 1fr;}}
+.b-copy{padding:54px 30px;display:flex;flex-direction:column;justify-content:center;}
+.b-copy .s-h1{
+  font-size:clamp(1.75rem,3.7vw,2.5rem);font-weight:800;letter-spacing:-.03em;
+  line-height:1.06;text-transform:none;
+}
+.b-art{position:relative;min-height:280px;overflow:hidden;background:#EFE8E4;}
+.b-cap{
+  position:absolute;left:0;bottom:0;right:0;padding:10px 14px;
+  font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.1em;
+  text-transform:uppercase;color:#6B615C;background:rgba(245,241,239,.92);
+}
+.b-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));border-top:1px solid #E6DFDB;}
+.b-cards article{padding:26px;border-left:1px solid #E6DFDB;}
+.b-cards article:first-child{border-left:0;}
+.b-cards h4{
+  font-family:'Archivo',sans-serif;font-size:1rem;font-weight:700;margin:0 0 8px;
+  letter-spacing:-.01em;
+}
+.b-cards p{margin:0;font-size:.88rem;color:var(--m-soft);line-height:1.55;}
+.b-cards h4::before{
+  content:"";display:block;width:18px;height:2px;background:var(--m-red);margin-bottom:12px;
+}
+
+/* ---------- Direction C ---------- */
+/* Exact aspect ratio + preserveAspectRatio="meet" means viewBox units map 1:1,
+   so label positions are predictable and nothing gets cropped unexpectedly. */
+.c-art{position:relative;background:#FCFBFA;border-top:1px solid var(--m-line);overflow:hidden;aspect-ratio:900/380;}
+.c-overlay{
+  position:absolute;left:0;bottom:0;width:52%;padding:24px 28px 26px;
+  background:var(--m-paper);border-top:1px solid var(--m-line);border-right:1px solid var(--m-line);
+}
+.c-overlay .s-h1{font-size:clamp(1.5rem,3.4vw,2.5rem);}
+@media(max-width:719px){
+  .c-art{aspect-ratio:900/460;}
+  .c-overlay{position:static;width:auto;border-right:0;}
+}
+.c-band{background:var(--m-ink);color:#F4F1EF;padding:34px 30px;display:flex;flex-wrap:wrap;gap:22px;align-items:center;justify-content:space-between;}
+.c-band p{margin:0;max-width:46ch;font-size:.95rem;color:#C6CCCD;}
+.c-band strong{display:block;font-family:'Archivo',sans-serif;font-weight:800;font-size:1.15rem;color:#fff;letter-spacing:-.01em;margin-bottom:6px;text-transform:uppercase;}
+.c-band .s-btn{background:var(--m-red);}
+
+/* ---------- shared / closing ---------- */
+.list{display:grid;gap:0;border:1px solid var(--pg-line);border-bottom:0;background:var(--pg-surface);}
+.list > div{display:grid;grid-template-columns:minmax(0,1fr);gap:4px;padding:16px 18px;border-bottom:1px solid var(--pg-line);}
+@media(min-width:700px){.list > div{grid-template-columns:190px minmax(0,1fr);gap:24px;align-items:baseline;}}
+.list dt{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--pg-soft);margin:0;}
+.list dd{margin:0;font-size:.95rem;}
+.note{
+  border-left:3px solid var(--pg-red);padding:4px 0 4px 18px;color:var(--pg-soft);
+  font-size:.95rem;margin-top:26px;max-width:64ch;
+}
+footer{padding:48px 0 72px;color:var(--pg-soft);font-size:.85rem;}
+footer .mono{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;}
+
+svg .ray{opacity:0;animation:draw .8s ease-out forwards;}
+@keyframes draw{to{opacity:1;}}
+@media(prefers-reduced-motion:reduce){
+  svg .ray{animation:none;opacity:1;}
+}
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">Vadimpex Handels GmbH · Website-Neugestaltung</p>
+    <h1>Three directions<br>for the <em>new site</em></h1>
+    <p class="lede">
+      All three keep the existing logo, use your real red, and carry the same content in German
+      and English. What differs is temperature: how formal the site feels, and how hard it leans
+      on the one graphic idea your logo already contains.
+    </p>
+    <div class="meta">
+      <span>Prepared for Nikolay Badjorov</span>
+      <span>Round 1 · pick a direction</span>
+      <span>Mockups, not final copy</span>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">Foundation 01</p>
+      <h2>The mark is already a diagram</h2>
+      <p>
+        Your logo's triangle is drawn as a fan of fine lines converging on a single point. Read it
+        as a map and it describes the business exactly: stock arriving from many manufacturers and
+        markets, meeting at one warehouse in Baden, going back out again. Every direction below
+        uses that fan as its graphic language — no stock photography required.
+      </p>
+    </div>
+    <div class="mark-explain">
+      <div class="mark-box"><img src="__LOGO__" alt="VADIMPEX logo: a fan of converging lines forming a triangle, beside the wordmark"></div>
+      <div>
+        <svg viewBox="0 0 420 220" role="img" aria-label="The logo's converging-line motif redrawn at large scale" style="width:100%;height:auto;border:1px solid var(--pg-line);background:#fff;">
+          <g id="fan-demo"></g>
+          <circle cx="210" cy="196" r="3.5" fill="#F83018"></circle>
+          <text x="210" y="215" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1.6" fill="#5E6769">BADEN</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">Foundation 02</p>
+      <h2>Colour &amp; type</h2>
+      <p>
+        Red sampled directly from your logo file. The bright red carries display type and graphics;
+        the deeper red does the work on buttons and links, where the bright one fails contrast
+        rules. Neutrals are warmed very slightly toward the red so nothing reads as default grey.
+      </p>
+    </div>
+    <div class="found-grid">
+      <div>
+        <span class="role">Palette</span>
+        <div class="swatches">
+          <div class="sw"><i style="background:#F83018"></i><b>#F83018</b><small>Brand red — logo, display type, graphics</small></div>
+          <div class="sw"><i style="background:#C81C08"></i><b>#C81C08</b><small>Deep red — buttons, links, small text</small></div>
+          <div class="sw"><i style="background:#22282A"></i><b>#22282A</b><small>Ink — headings and body</small></div>
+          <div class="sw"><i style="background:#5E6769"></i><b>#5E6769</b><small>Soft — secondary text</small></div>
+          <div class="sw"><i style="background:#F5F1EF"></i><b>#F5F1EF</b><small>Warm paper — section grounds</small></div>
+          <div class="sw"><i style="background:#E7E1DE"></i><b>#E7E1DE</b><small>Hairline — rules and borders</small></div>
+        </div>
+      </div>
+      <div class="specimen">
+        <span class="role">Display — Archivo</span>
+        <p class="big">Großhandel<br>seit 1994</p>
+        <hr>
+        <span class="role">Body — IBM Plex Sans</span>
+        <p class="mid">
+          Vadimpex sources phones, tablets and wearables directly from manufacturers and
+          distributes them from Baden, 30 km south of Vienna.
+        </p>
+        <hr>
+        <span class="role">Data — IBM Plex Mono</span>
+        <p class="mono">FN 117089 s · ATU38419001 · 2500 Baden</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DIRECTION A ============ -->
+  <section>
+    <div class="dir-head">
+      <span class="dir-tag">Direction A</span>
+      <h2>Convergence</h2>
+    </div>
+    <p class="thesis">
+      The formal end of your range. A disciplined grid, oversized headline, and the fan rendered as
+      precise engineering hairlines. This is what a buyer expects an established Austrian trading
+      house to look like — and it is the safest to live with for ten years.
+    </p>
+
+    <dl class="readout">
+      <div><dt>Says about you</dt><dd>Precise, established, does what it promises</dd></div>
+      <div><dt>Risk</dt><dd>Low. Conventional by design</dd></div>
+      <div><dt>Effort</dt><dd>Lowest — no photography needed</dd></div>
+    </dl>
+
+    <div class="frame">
+      <div class="chrome"><i></i><i></i><i></i><span>vadimpex.com</span></div>
+      <div class="screen">
+        <div class="s-nav">
+          <img class="logo" src="__LOGO__" alt="VADIMPEX">
+          <div class="s-links">
+            <b>Über uns</b><b>Verkaufsliste</b><b>Gewährleistung</b><b>Kontakt</b>
+            <span class="lang"><em>DE</em> / EN</span>
+          </div>
+        </div>
+        <div class="a-hero">
+          <div class="a-copy">
+            <p class="s-eyebrow">Großhandel · Baden bei Wien · seit 1994</p>
+            <h3 class="s-h1">Mobilgeräte<br>im Großhandel</h3>
+            <p class="s-sub">
+              Smartphones, Tablets und Wearables aller großen Marken — direkt vom Hersteller,
+              ab Lager Baden, 30 km südlich von Wien.
+            </p>
+            <div class="s-actions">
+              <a class="s-btn" href="#">Aktuelle Verkaufsliste</a>
+              <a class="s-btn ghost" href="#">Kontakt aufnehmen</a>
+            </div>
+          </div>
+          <div class="a-art"><svg id="fan-a" viewBox="0 0 320 400" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%;"></svg></div>
+        </div>
+        <div class="facts">
+          <div><b>1994</b><small>Gegründet</small></div>
+          <div><b>400 m²</b><small>Lagerfläche</small></div>
+          <div><b>30 km</b><small>bis Wien</small></div>
+          <div><b>FN 117089 s</b><small>Firmenbuch</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DIRECTION B ============ -->
+  <section>
+    <div class="dir-head">
+      <span class="dir-tag">Direction B</span>
+      <h2>Workshop</h2>
+    </div>
+    <p class="thesis">
+      The warm end. Off-white paper ground, sentence-case headlines, and copy written in the voice
+      of your own warranty policy — plain, fair, slightly self-deprecating. The fan appears as a
+      soft printed artwork rather than a technical drawing. No faces, but the image slot can hold a
+      real photograph of the warehouse whenever you want one.
+    </p>
+
+    <dl class="readout">
+      <div><dt>Says about you</dt><dd>A family firm you can actually talk to</dd></div>
+      <div><dt>Risk</dt><dd>Low. Softer, slightly less commanding</dd></div>
+      <div><dt>Effort</dt><dd>Low — one warehouse photo would improve it</dd></div>
+    </dl>
+
+    <div class="frame">
+      <div class="chrome"><i></i><i></i><i></i><span>vadimpex.com</span></div>
+      <div class="screen b-screen">
+        <div class="s-nav">
+          <img class="logo" src="__LOGO__" alt="VADIMPEX">
+          <div class="s-links">
+            <b>Über uns</b><b>Verkaufsliste</b><b>Gewährleistung</b><b>Kontakt</b>
+            <span class="lang"><em>DE</em> / EN</span>
+          </div>
+        </div>
+        <div class="b-hero">
+          <div class="b-copy">
+            <p class="s-eyebrow">Vadimpex Handels GmbH</p>
+            <h3 class="s-h1">Quick, fair, and free of surprises.</h3>
+            <p class="s-sub">
+              That is how we describe our returns policy, and it is how we try to run everything
+              else too. Thirty-two years of wholesale, from a 400 m² warehouse in Baden.
+            </p>
+            <div class="s-actions">
+              <a class="s-btn" href="#">See what we have in stock</a>
+            </div>
+          </div>
+          <div class="b-art">
+            <svg id="fan-b" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" style="position:absolute;inset:0;width:100%;height:100%;"></svg>
+            <p class="b-cap">Artwork — or a photograph of the Baden warehouse</p>
+          </div>
+        </div>
+        <div class="b-cards">
+          <article>
+            <h4>Direkt vom Hersteller</h4>
+            <p>Neue Modelle ab Verkaufsstart auf Lager, zu Preisen, die wir offen kalkulieren.</p>
+          </article>
+          <article>
+            <h4>Faire Rücksendungen</h4>
+            <p>Unsere Gewährleistungsbedingungen stehen vollständig online — keine Überraschungen.</p>
+          </article>
+          <article>
+            <h4>Echte Ansprechpartner</h4>
+            <p>Ein kleines Team in Baden. Sie erreichen uns per Telefon, E-Mail oder WhatsApp.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DIRECTION C ============ -->
+  <section>
+    <div class="dir-head">
+      <span class="dir-tag">Direction C</span>
+      <h2>Trade Routes</h2>
+    </div>
+    <p class="thesis">
+      The one with a point of view. The fan is blown up to fill the screen and labelled as what it
+      actually is — routes converging on Baden. It says what you do before a single word is read,
+      it is impossible to confuse with a competitor, and it is built entirely from your own logo.
+      This is the direction I would push for.
+    </p>
+
+    <dl class="readout">
+      <div><dt>Says about you</dt><dd>You move goods across the world, from here</dd></div>
+      <div><dt>Risk</dt><dd>Medium — a strong idea you must be happy to own</dd></div>
+      <div><dt>Effort</dt><dd>Moderate — the graphic must be built properly</dd></div>
+    </dl>
+
+    <div class="frame">
+      <div class="chrome"><i></i><i></i><i></i><span>vadimpex.com</span></div>
+      <div class="screen">
+        <div class="s-nav">
+          <img class="logo" src="__LOGO__" alt="VADIMPEX">
+          <div class="s-links">
+            <b>Über uns</b><b>Verkaufsliste</b><b>Gewährleistung</b><b>Kontakt</b>
+            <span class="lang"><em>DE</em> / EN</span>
+          </div>
+        </div>
+        <div class="c-art">
+          <svg id="fan-c" viewBox="0 0 900 380" preserveAspectRatio="xMidYMid meet" style="position:absolute;inset:0;width:100%;height:100%;"></svg>
+          <div class="c-overlay">
+            <p class="s-eyebrow">Seit 1994 · Baden, Österreich</p>
+            <h3 class="s-h1">Alles läuft<br>hier zusammen</h3>
+          </div>
+        </div>
+        <div class="c-band">
+          <div>
+            <strong>Gewährleistung &amp; Rücksendungen</strong>
+            <p>Unsere vollständigen Bedingungen — in klarer Sprache, ohne Kleingedrucktes.</p>
+          </div>
+          <a class="s-btn" href="#">Bedingungen lesen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <p class="eyebrow">Identical in all three</p>
+      <h2>What doesn't change</h2>
+      <p>The direction only decides how it looks. The structure and content are the same either way.</p>
+    </div>
+    <dl class="list">
+      <div><dt>Pages</dt><dd>One scrolling homepage, plus Gewährleistung &amp; Rücksendungen and Impressum as their own pages — as you asked, between a one-pager and a two-page site.</dd></div>
+      <div><dt>Languages</dt><dd>German and English, every page, with a proper language switch and correct <code>hreflang</code> tags.</dd></div>
+      <div><dt>Carried over</dt><dd>The company history, the warranty policy you already wrote, the Baden address, phone and fax, and the trading-platform memberships.</dd></div>
+      <div><dt>Dropped</dt><dd>Testimonials, events &amp; exhibitions, the B2B portal, team photographs, the currency switcher, and the "SHOP" placeholder identity.</dd></div>
+      <div><dt>Added</dt><dd>A compliant Impressum, honest metadata, a working sitemap, and a year that updates itself.</dd></div>
+      <div><dt>Hosting</dt><dd>Static site on GitHub Pages, same as wts.vadimpex.com. No Bizzio, no monthly fee, no server to patch.</dd></div>
+    </dl>
+    <p class="note">
+      Team photographs are out, as you said. Direction B still reserves an image slot — if you ever
+      photograph the warehouse or the building, it drops straight in without a redesign.
+    </p>
+  </section>
+
+  <footer>
+    <p class="mono">Vadimpex Handels GmbH · Gewerbestraße 30, 2500 Baden · FN 117089 s · ATU38419001</p>
+    <p>Round 1 concepts. Copy is indicative and will be written properly once a direction is chosen.</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  var NS = "http://www.w3.org/2000/svg";
+
+  function ray(x1, y1, x2, y2, stroke, w, op, delay) {
+    var l = document.createElementNS(NS, "line");
+    l.setAttribute("x1", x1); l.setAttribute("y1", y1);
+    l.setAttribute("x2", x2); l.setAttribute("y2", y2);
+    l.setAttribute("stroke", stroke);
+    l.setAttribute("stroke-width", w);
+    l.setAttribute("opacity", op);
+    l.setAttribute("class", "ray");
+    l.style.animationDelay = delay + "ms";
+    return l;
+  }
+
+  // Generic fan: lines from an arc of origins converging on one point.
+  function fan(target, opts) {
+    var g = typeof target === "string" ? document.getElementById(target) : target;
+    if (!g) return;
+    var cx = opts.cx, cy = opts.cy, n = opts.count, r = opts.radius;
+    var from = opts.from, to = opts.to;
+    for (var i = 0; i < n; i++) {
+      var t = n === 1 ? 0 : i / (n - 1);
+      var a = (from + (to - from) * t) * Math.PI / 180;
+      var x = cx + Math.cos(a) * r;
+      var y = cy + Math.sin(a) * r;
+      var isAccent = opts.accentEvery && i % opts.accentEvery === 0;
+      g.appendChild(ray(
+        x, y, cx, cy,
+        isAccent ? opts.accent : opts.base,
+        isAccent ? (opts.accentWidth || 1.2) : (opts.width || 0.6),
+        isAccent ? (opts.accentOpacity || 0.95) : (opts.opacity || 0.5),
+        i * (opts.stagger || 12)
+      ));
+    }
+  }
+
+  // Foundation demo
+  fan("fan-demo", {
+    cx: 210, cy: 196, count: 34, radius: 250, from: 200, to: 340,
+    base: "#22282A", accent: "#F83018", accentEvery: 4, opacity: .32, width: .7, stagger: 14
+  });
+
+  // A — precise engineering hairlines, converging bottom-left
+  (function () {
+    var g = document.getElementById("fan-a"); if (!g) return;
+    fan(g, { cx: 40, cy: 372, count: 46, radius: 480, from: -84, to: -6,
+             base: "#22282A", accent: "#F83018", accentEvery: 5, opacity: .22, width: .55,
+             accentOpacity: .9, accentWidth: 1, stagger: 10 });
+    var d = document.createElementNS(NS, "circle");
+    d.setAttribute("cx", 40); d.setAttribute("cy", 372); d.setAttribute("r", 4);
+    d.setAttribute("fill", "#F83018");
+    g.appendChild(d);
+  })();
+
+  // B — soft radial burst, warm and printed-looking
+  (function () {
+    var g = document.getElementById("fan-b"); if (!g) return;
+    fan(g, { cx: 200, cy: 300, count: 60, radius: 520, from: 182, to: 358,
+             base: "#B9A79E", accent: "#F83018", accentEvery: 7, opacity: .5, width: 1.1,
+             accentOpacity: .5, accentWidth: 1.6, stagger: 8 });
+    var arcs = [70, 120, 175, 235];
+    arcs.forEach(function (rr, i) {
+      var c = document.createElementNS(NS, "circle");
+      c.setAttribute("cx", 200); c.setAttribute("cy", 300); c.setAttribute("r", rr);
+      c.setAttribute("fill", "none"); c.setAttribute("stroke", "#B9A79E");
+      c.setAttribute("stroke-width", ".8"); c.setAttribute("opacity", ".45");
+      c.setAttribute("class", "ray"); c.style.animationDelay = (300 + i * 90) + "ms";
+      g.appendChild(c);
+    });
+  })();
+
+  // C — trade routes converging on Baden, with real destinations.
+  // The viewBox maps 1:1 to the container (aspect-ratio + preserveAspectRatio="meet"),
+  // so every label below is placed in the clear zone above the copy card, which
+  // occupies x < 468, y > 209. Keep new destinations out of that rectangle.
+  (function () {
+    var g = document.getElementById("fan-c"); if (!g) return;
+    var cx = 690, cy = 292;
+    var dests = [
+      { n: "HONG KONG", a: -98,  r: 250 },
+      { n: "DUBAI",     a: -118, r: 290 },
+      { n: "ROTTERDAM", a: -138, r: 330 },
+      { n: "HAMBURG",   a: -148, r: 355 },
+      { n: "MADRID",    a: -158, r: 390 }
+    ];
+
+    // dense background fan — bleeds past the viewBox edges on purpose
+    fan(g, { cx: cx, cy: cy, count: 90, radius: 820, from: -178, to: -8,
+             base: "#22282A", accent: "#F83018", accentEvery: 11, opacity: .1, width: .5,
+             accentOpacity: .28, accentWidth: .8, stagger: 5 });
+
+    // labelled routes
+    dests.forEach(function (d, i) {
+      var a = d.a * Math.PI / 180;
+      var x = cx + Math.cos(a) * d.r, y = cy + Math.sin(a) * d.r;
+      g.appendChild(ray(x, y, cx, cy, "#F83018", 1.1, .8, 500 + i * 70));
+      var dot = document.createElementNS(NS, "circle");
+      dot.setAttribute("cx", x); dot.setAttribute("cy", y); dot.setAttribute("r", 2.6);
+      dot.setAttribute("fill", "#F83018");
+      dot.setAttribute("class", "ray"); dot.style.animationDelay = (600 + i * 70) + "ms";
+      g.appendChild(dot);
+      var t = document.createElementNS(NS, "text");
+      t.setAttribute("x", x); t.setAttribute("y", y - 11);
+      t.setAttribute("text-anchor", "middle");
+      t.setAttribute("font-family", "IBM Plex Mono, monospace");
+      t.setAttribute("font-size", "9.5");
+      t.setAttribute("letter-spacing", "1.5");
+      t.setAttribute("fill", "#5E6769");
+      t.setAttribute("class", "ray");
+      t.style.animationDelay = (680 + i * 70) + "ms";
+      t.textContent = d.n;
+      g.appendChild(t);
+    });
+
+    // Baden node
+    var ring = document.createElementNS(NS, "circle");
+    ring.setAttribute("cx", cx); ring.setAttribute("cy", cy); ring.setAttribute("r", 13);
+    ring.setAttribute("fill", "none"); ring.setAttribute("stroke", "#F83018");
+    ring.setAttribute("stroke-width", "1.2"); ring.setAttribute("opacity", ".55");
+    g.appendChild(ring);
+    var node = document.createElementNS(NS, "circle");
+    node.setAttribute("cx", cx); node.setAttribute("cy", cy); node.setAttribute("r", 5);
+    node.setAttribute("fill", "#F83018");
+    g.appendChild(node);
+    var lbl = document.createElementNS(NS, "text");
+    lbl.setAttribute("x", cx + 20); lbl.setAttribute("y", cy + 5);
+    lbl.setAttribute("font-family", "IBM Plex Mono, monospace");
+    lbl.setAttribute("font-size", "11"); lbl.setAttribute("letter-spacing", "2");
+    lbl.setAttribute("fill", "#22282A");
+    lbl.textContent = "BADEN, AT";
+    g.appendChild(lbl);
+  })();
+})();
+</script>

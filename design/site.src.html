@@ -1,0 +1,864 @@
+<title>VADIMPEX Handels GmbH — Wholesale mobile devices, Baden, Austria</title>
+<style>
+/*FONTS*/
+
+/* ---------- tokens: light is the base, dark redefines only values ---------- */
+:root{
+  --red:#E31F28;
+  --red-act:#E31F28;
+  --btn-fg:#FFFFFF;
+  --ink:#22282A;
+  --soft:#5F6769;
+  --paper:#F7F4F2;
+  --raised:#FFFFFF;
+  --line:#E4DBD6;
+  --band:#22282A;
+  --band-ink:#F4F1EF;
+  --band-soft:#B9C0C1;
+  --fan:#22282A;
+  --arc:#C9B8B0;
+  --shadow:0 1px 2px rgba(34,40,42,.05);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --red:#E31F28; --red-act:#FF5D63; --btn-fg:#15191A;
+    --ink:#EDE9E6; --soft:#9AA1A3;
+    --paper:#15191A; --raised:#1D2223; --line:#2F3537;
+    --band:#0E1112; --band-ink:#F1EEEC; --band-soft:#98A0A2;
+    --fan:#8A9295; --arc:#3A4143;
+    --shadow:0 1px 2px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --red:#E31F28; --red-act:#FF5D63; --btn-fg:#15191A;
+  --ink:#EDE9E6; --soft:#9AA1A3;
+  --paper:#15191A; --raised:#1D2223; --line:#2F3537;
+  --band:#0E1112; --band-ink:#F1EEEC; --band-soft:#98A0A2;
+  --fan:#8A9295; --arc:#3A4143;
+  --shadow:0 1px 2px rgba(0,0,0,.4);
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:'IBM Plex Sans','Segoe UI',system-ui,sans-serif;
+  font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:'Archivo','Segoe UI',system-ui,sans-serif;text-wrap:balance;margin:0;}
+a{color:var(--red-act);}
+a:focus-visible,button:focus-visible{outline:2px solid var(--red-act);outline-offset:3px;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(18px,4vw,40px);}
+.mono{font-family:'IBM Plex Mono',ui-monospace,monospace;}
+
+/* ---------- header ---------- */
+.hdr{
+  position:sticky;top:0;z-index:50;background:var(--paper);
+  border-bottom:1px solid var(--line);
+}
+.hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:15px;padding-bottom:15px;}
+.brand{display:flex;align-items:center;flex:none;}
+.brand img{height:26px;width:auto;display:block;}
+.brand .dk{display:none;}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .brand .lt{display:none;}
+  :root:not([data-theme="light"]) .brand .dk{display:block;}
+}
+:root[data-theme="dark"] .brand .lt{display:none;}
+:root[data-theme="dark"] .brand .dk{display:block;}
+
+.nav{display:flex;align-items:center;gap:22px;}
+.nav a{
+  font-size:.79rem;letter-spacing:.05em;text-transform:uppercase;color:var(--soft);
+  text-decoration:none;white-space:nowrap;
+}
+.nav a:hover{color:var(--red-act);}
+.tools{display:flex;align-items:center;gap:9px;flex:none;}
+.lang{display:inline-flex;border:1px solid var(--line);}
+.lang button{
+  font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.1em;
+  padding:5px 9px;border:0;background:transparent;color:var(--soft);cursor:pointer;
+}
+.lang button[aria-pressed="true"]{color:var(--red-act);font-weight:500;}
+.iconbtn{
+  border:1px solid var(--line);background:transparent;color:var(--soft);
+  width:32px;height:30px;display:grid;place-items:center;cursor:pointer;padding:0;
+}
+.iconbtn svg{width:15px;height:15px;display:block;}
+.burger{display:none;}
+@media(max-width:940px){
+  .nav{
+    display:none;position:absolute;top:100%;left:0;right:0;background:var(--paper);
+    border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;
+    gap:0;padding:6px clamp(18px,4vw,40px) 16px;
+  }
+  .nav.open{display:flex;}
+  .nav a{padding:11px 0;width:100%;border-bottom:1px solid var(--line);font-size:.85rem;}
+  .nav a:last-child{border-bottom:0;}
+  .burger{display:grid;}
+}
+
+/* ---------- hero ---------- */
+/* A fixed, sane height. An aspect-ratio hero grows past the fold on wide monitors
+   and buries the headline; the graphic adapts to the box instead. */
+.hero{
+  position:relative;height:clamp(430px,62vh,620px);overflow:hidden;
+  background:var(--paper);border-bottom:1px solid var(--line);
+}
+.heroart{position:absolute;inset:0;}
+.hero svg{position:absolute;inset:0;width:100%;height:100%;}
+/* The card is held inside the same 1180px column as every section below, so the
+   headline starts on the same line as the body copy further down the page. */
+.herocard{position:absolute;left:0;right:0;bottom:0;max-width:1180px;margin-inline:auto;}
+.herocard-inner{
+  width:min(52%,600px);
+  padding:clamp(22px,3vw,34px) clamp(18px,4vw,40px);
+  background:var(--paper);border-top:1px solid var(--line);border-right:1px solid var(--line);
+}
+.eyebrow{
+  font-family:'IBM Plex Mono',monospace;font-size:clamp(.6rem,1.1vw,.7rem);letter-spacing:.15em;
+  text-transform:uppercase;color:var(--red-act);margin:0 0 13px;
+}
+.herocard h1{font-weight:800;letter-spacing:-.03em;line-height:1.05;font-size:clamp(1.25rem,3vw,2.4rem);}
+.herosub{color:var(--soft);margin:14px 0 0;font-size:clamp(.82rem,1.35vw,1rem);max-width:50ch;}
+.acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;}
+.btn{
+  display:inline-block;background:var(--red-act);color:var(--btn-fg);text-decoration:none;
+  font-size:.85rem;font-weight:500;padding:12px 22px;border:1px solid var(--red-act);
+}
+.btn:hover{filter:brightness(1.08);}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink);}
+@media(max-width:860px){
+  .hero{height:auto;display:flex;flex-direction:column;}
+  .hero .heroart{position:relative;inset:auto;aspect-ratio:900/420;}
+  .herocard{position:static;max-width:none;}
+  .herocard-inner{width:auto;border-right:0;}
+}
+
+/* ---------- generic sections ---------- */
+section{border-bottom:1px solid var(--line);}
+/* the header is sticky, so anchor jumps must stop short of it */
+section[id]{scroll-margin-top:74px;}
+.pad{padding:clamp(38px,5vw,58px) 0;}
+.h2{font-size:clamp(1.25rem,2.6vw,1.75rem);font-weight:800;letter-spacing:-.02em;margin-bottom:12px;}
+.lead{color:var(--soft);max-width:64ch;margin:0;}
+
+/* full-bleed grids are capped to the same column as .wrap, so every section
+   lines up on a wide monitor instead of some running edge to edge */
+.cards,.split,.contact{max-width:1180px;margin-inline:auto;}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));}
+.cards article{padding:clamp(26px,3vw,34px) clamp(18px,4vw,40px);border-left:1px solid var(--line);}
+.cards article:first-child{border-left:0;}
+@media(max-width:800px){.cards article{border-left:0;border-top:1px solid var(--line);}.cards article:first-child{border-top:0;}}
+.cards h3{font-size:1.04rem;font-weight:700;margin-bottom:10px;letter-spacing:-.01em;}
+.cards h3::before{content:"";display:block;width:22px;height:2px;background:var(--red);margin-bottom:14px;}
+.cards p{margin:0;font-size:.91rem;color:var(--soft);}
+
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));}
+.split > div{padding:clamp(28px,3vw,36px) clamp(18px,4vw,40px);border-left:1px solid var(--line);}
+.split > div:first-child{border-left:0;}
+@media(max-width:800px){.split > div{border-left:0;border-top:1px solid var(--line);}.split > div:first-child{border-top:0;}}
+.split h3{font-size:1.08rem;font-weight:800;margin-bottom:11px;letter-spacing:-.015em;}
+.split p{margin:0 0 11px;font-size:.93rem;color:var(--soft);}
+.split p:last-of-type{margin-bottom:0;}
+.stockrow{background:var(--raised);}
+.stockrow .url{font-family:'IBM Plex Mono',monospace;font-size:.74rem;letter-spacing:.05em;color:var(--red-act);margin:0 0 18px;}
+
+/* ---------- memberships ---------- */
+.creds{
+  list-style:none;margin:26px 0 0;padding:0;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);
+}
+@media(min-width:960px){.creds{grid-template-columns:repeat(5,1fr);}}
+.cred{background:var(--paper);padding:22px 18px 19px;position:relative;display:flex;flex-direction:column;}
+.cred::before{content:"";position:absolute;top:0;left:0;height:2px;width:26px;background:var(--red);transition:width .24s ease;}
+.cred:hover::before,.cred:focus-within::before{width:100%;}
+.cred .glyph{position:absolute;top:15px;right:14px;width:25px;height:25px;opacity:.55;}
+.cred h3{font-size:.97rem;font-weight:800;margin:14px 0 7px;letter-spacing:-.01em;padding-right:28px;}
+.cred p{margin:0 0 15px;font-size:.81rem;color:var(--soft);line-height:1.5;flex:1;}
+.cred .rec{font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.05em;color:var(--soft);border-top:1px solid var(--line);padding-top:12px;}
+.cred .rec b{display:block;color:var(--ink);font-weight:500;margin-top:3px;word-break:break-word;}
+.cred a{margin-top:12px;font-size:.78rem;font-weight:500;text-decoration:none;}
+.cred a:hover{text-decoration:underline;}
+.cred.filler{padding:0;}
+.cred.filler::before{display:none;}
+
+/* ---------- team ---------- */
+.teamsec{background:var(--raised);}
+.roster{list-style:none;margin:26px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(224px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);}
+.roster li{background:var(--raised);padding:19px 19px 17px;}
+.roster .nm{font-family:'Archivo',sans-serif;font-weight:700;font-size:.97rem;letter-spacing:-.01em;margin:0;}
+.roster .rl{font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.11em;text-transform:uppercase;color:var(--red-act);margin:6px 0 12px;}
+.roster .ct{margin:0;font-size:.8rem;line-height:1.7;color:var(--soft);word-break:break-word;}
+.roster .ct a{color:var(--soft);text-decoration:none;}
+.roster .ct a:hover{color:var(--red-act);}
+.roster li.office{background:var(--paper);}
+.roster li.office .ct a{color:var(--red-act);}
+.roster li.art{background:var(--paper);position:relative;overflow:hidden;min-height:122px;padding:0;}
+.roster li.art svg{position:absolute;inset:0;width:100%;height:100%;}
+
+/* ---------- band ---------- */
+.band{background:var(--band);color:var(--band-ink);}
+.band .wrap{display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between;padding-top:clamp(28px,4vw,40px);padding-bottom:clamp(28px,4vw,40px);}
+.band h3{font-size:1.18rem;font-weight:800;letter-spacing:-.015em;margin-bottom:8px;}
+.band p{margin:0;color:var(--band-soft);font-size:.93rem;max-width:54ch;}
+.band .btn{background:var(--red);border-color:var(--red);color:#fff;}
+
+/* ---------- contact ---------- */
+.contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));}
+.contact > div{padding:clamp(26px,3vw,34px) clamp(18px,4vw,40px);border-left:1px solid var(--line);}
+.contact > div:first-child{border-left:0;}
+@media(max-width:800px){.contact > div{border-left:0;border-top:1px solid var(--line);}.contact > div:first-child{border-top:0;}}
+.contact h4{font-family:'IBM Plex Mono',monospace;font-size:.67rem;letter-spacing:.15em;text-transform:uppercase;color:var(--soft);margin-bottom:13px;font-weight:500;}
+.contact p{margin:0;font-size:.92rem;line-height:1.72;}
+.contact a{text-decoration:none;}
+.contact .reg{font-family:'IBM Plex Mono',monospace;font-size:.79rem;color:var(--soft);}
+
+/* ---------- legal pages ---------- */
+.legal{padding:clamp(38px,5vw,60px) 0 clamp(20px,3vw,30px);}
+.legal h1{font-weight:800;font-size:clamp(1.6rem,3.4vw,2.3rem);letter-spacing:-.03em;margin-bottom:14px;}
+.legal .basis{margin:0 0 32px;font-size:.88rem;color:var(--soft);max-width:78ch;}
+.rows{display:grid;border-top:1px solid var(--line);}
+.rows > div{display:grid;grid-template-columns:minmax(0,1fr);gap:4px;padding:15px 0;border-bottom:1px solid var(--line);}
+@media(min-width:760px){.rows > div{grid-template-columns:290px minmax(0,1fr);gap:28px;align-items:baseline;}}
+.rows dt{font-family:'IBM Plex Mono',monospace;font-size:.69rem;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin:0;}
+.rows dd{margin:0;font-size:.92rem;}
+.rows dd a{text-decoration:none;}
+.legal .after{margin-top:36px;padding-top:28px;border-top:2px solid var(--ink);}
+.legal .after h2{font-size:1.06rem;font-weight:800;letter-spacing:-.015em;margin-bottom:9px;}
+.legal .after p{margin:0 0 22px;font-size:.89rem;color:var(--soft);max-width:78ch;}
+
+/* ---------- footer ---------- */
+.ftr{border-top:1px solid var(--line);}
+.ftr .wrap{
+  display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center;justify-content:space-between;
+  padding-top:22px;padding-bottom:26px;
+  font-family:'IBM Plex Mono',monospace;font-size:.67rem;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--soft);
+}
+.ftr a{color:var(--soft);text-decoration:none;}
+.ftr a:hover{color:var(--red-act);}
+.ftr nav{display:flex;flex-wrap:wrap;gap:18px;}
+
+[hidden]{display:none !important;}
+/* Visible is the resting state and the animation only fades IN from it. If the
+   animation never runs -- reduced motion, a background tab, an old browser --
+   the content is simply there. The previous version defaulted to opacity 0 and
+   could leave the map labels permanently invisible. */
+.ray{opacity:1;animation:fade .7s ease-out backwards;}
+@keyframes fade{from{opacity:0;}}
+@media(prefers-reduced-motion:reduce){.ray{animation:none;}}
+</style>
+
+<header class="hdr">
+  <div class="wrap">
+    <a class="brand" href="#/" aria-label="VADIMPEX">
+      <img class="lt" src="__LOGO_LIGHT__" alt="VADIMPEX">
+      <img class="dk" src="__LOGO_DARK__" alt="VADIMPEX">
+    </a>
+    <nav class="nav" id="nav">
+      <a href="#/" data-t="nav.home"></a>
+      <a href="#about" data-t="nav.about"></a>
+      <a href="#stock" data-t="nav.stock"></a>
+      <a href="#team" data-t="nav.team"></a>
+      <a href="#memberships" data-t="nav.mem"></a>
+      <a href="#warranty" data-t="nav.warranty"></a>
+      <a href="#contact" data-t="nav.contact"></a>
+    </nav>
+    <div class="tools">
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" id="l-en" aria-pressed="true">EN</button>
+        <button type="button" id="l-de" aria-pressed="false">DE</button>
+      </div>
+      <button class="iconbtn" id="theme" type="button" aria-label="Switch theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"></svg>
+      </button>
+      <button class="iconbtn burger" id="burger" type="button" aria-label="Menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="page-home">
+  <div class="hero">
+    <div class="heroart">
+      <svg id="routes" viewBox="0 0 900 520" preserveAspectRatio="xMidYMid meet" role="img" aria-label=""></svg>
+    </div>
+    <div class="herocard">
+      <div class="herocard-inner">
+        <p class="eyebrow" data-t="hero.eyebrow"></p>
+        <h1 data-t="hero.h1"></h1>
+        <p class="herosub" data-t="hero.sub"></p>
+        <div class="acts">
+          <a class="btn" href="https://wts.vadimpex.com" target="_blank" rel="noopener" data-t="hero.btn1"></a>
+          <a class="btn ghost" href="#contact" data-t="hero.btn2"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="cards" id="about"></section>
+
+  <section class="split" id="trade"></section>
+
+  <section class="split stockrow" id="stock">
+    <div>
+      <h3 data-t="stock.h"></h3>
+      <p data-t="stock.p"></p>
+      <p class="url">wts.vadimpex.com</p>
+      <a class="btn" href="https://wts.vadimpex.com" target="_blank" rel="noopener" data-t="stock.btn"></a>
+    </div>
+    <div>
+      <h3 data-t="news.h"></h3>
+      <p data-t="news.p"></p>
+      <p class="url" data-t="news.note"></p>
+      <a class="btn ghost" href="https://eepurl.com/gFD8Nz" target="_blank" rel="noopener" data-t="news.btn"></a>
+    </div>
+  </section>
+
+  <section class="pad" id="memberships">
+    <div class="wrap">
+      <h2 class="h2" data-t="mem.h"></h2>
+      <p class="lead" data-t="mem.p"></p>
+      <ul class="creds" id="creds"></ul>
+    </div>
+  </section>
+
+  <section class="pad teamsec" id="team">
+    <div class="wrap">
+      <h2 class="h2" data-t="team.h"></h2>
+      <p class="lead" data-t="team.p"></p>
+      <ul class="roster" id="roster"></ul>
+    </div>
+  </section>
+
+  <section class="band" id="warranty">
+    <div class="wrap">
+      <div>
+        <h3 data-t="war.h"></h3>
+        <p data-t="war.p"></p>
+      </div>
+      <a class="btn" href="https://wts.vadimpex.com/warranty-policy.html" target="_blank" rel="noopener" data-t="war.btn"></a>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div>
+      <h4 data-t="con.addr"></h4>
+      <p>VADIMPEX Handels GmbH<br>Gewerbestrasse 30<br>2500 Baden<br><span data-t="con.country"></span></p>
+    </div>
+    <div>
+      <h4 data-t="con.contact"></h4>
+      <p>
+        T <a href="tel:+43164178870">+43&#8209;1&#8209;6417887&#8209;0</a><br>
+        F +43&#8209;1&#8209;6417887&#8209;99<br>
+        E <a href="mailto:office@vadimpex.com">office@vadimpex.com</a>
+      </p>
+    </div>
+    <div>
+      <h4 data-t="con.reg"></h4>
+      <p class="reg">FN 117089 s<br>ATU38419001<br>LG Wiener Neustadt</p>
+    </div>
+  </section>
+</main>
+
+<main id="page-imprint" hidden>
+  <div class="wrap legal">
+    <p class="eyebrow" data-t="imp.kicker"></p>
+    <h1 data-t="imp.h1"></h1>
+    <p class="basis" data-t="imp.basis"></p>
+    <dl class="rows" id="imp-rows"></dl>
+    <div class="after">
+      <h2 data-t="imp.medh"></h2>
+      <p data-t="imp.medp"></p>
+    </div>
+  </div>
+</main>
+
+<main id="page-privacy" hidden>
+  <div class="wrap legal">
+    <p class="eyebrow" data-t="pri.kicker"></p>
+    <h1 data-t="pri.h1"></h1>
+    <p class="basis" data-t="pri.basis"></p>
+    <dl class="rows" id="pri-rows"></dl>
+    <div class="after">
+      <h2 data-t="pri.ch"></h2>
+      <p data-t="pri.cp"></p>
+    </div>
+  </div>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <span>&copy; <span id="yr"></span> VADIMPEX Handels GmbH</span>
+    <nav>
+      <a href="#/imprint" data-t="foot.imp"></a>
+      <a href="#/privacy" data-t="foot.pri"></a>
+      <a href="https://wts.vadimpex.com/warranty-policy.html" target="_blank" rel="noopener" data-t="foot.war"></a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var YEARS = new Date().getFullYear() - 1994;
+
+  var T = {
+    en: {
+      "nav.home":"Home","nav.about":"About","nav.stock":"Stock list","nav.team":"Team",
+      "nav.mem":"Memberships","nav.warranty":"Warranty","nav.contact":"Contact",
+      "hero.eyebrow":"Wholesale &middot; Baden, Austria &middot; since 1994",
+      "hero.h1":"One warehouse in Austria.<br>" + YEARS + " years in the trade.",
+      "hero.sub":"Vadimpex buys and sells phones, tablets, smart watches, laptops and accessories from Baden, 30 km south of Vienna, with customers across Europe, the Dubai free zone and Hong Kong.",
+      "hero.btn1":"See current stock","hero.btn2":"Talk to us",
+      "cards":[
+        ["Stock you can check","Our selling list is published online and updated daily. If a line has moved, the list moves with it &mdash; so you are quoting from something real."],
+        ["Terms that don't shift","Warranty and return conditions are published in full, in plain language, before you buy. Nothing appears later that wasn't there at the start."],
+        ["A named person","You deal with someone specific in Baden, reachable by phone, email or WhatsApp &mdash; not a shared inbox and a ticket number."]
+      ],
+      "split":[
+        ["What we trade",["Phones, tablets, smart watches, laptops and accessories, across the brands the market actually asks for.","Stock reaches us through established distribution channels &mdash; factory lots via long-standing intermediaries, and stock traded within the European wholesale market."]],
+        ["Who we sell to",["Wholesalers, independent shops and smaller companies. We work equally happily with a large distributor and a single store.","We do not sell to consumers. If you have arrived here looking for one phone for yourself, we are the wrong address &mdash; and we would rather say so now."]]
+      ],
+      "stock.h":"Current selling list",
+      "stock.p":"Live stock, exportable to CSV or Excel, with an API for partners who want it fed straight into their own systems.",
+      "stock.btn":"Open the list",
+      "news.h":"Or get it by email",
+      "news.p":"We send the current WTS list to subscribers. One email, the stock as it stands, and an unsubscribe link on every one.",
+      "news.note":"Free &middot; unsubscribe any time","news.btn":"Subscribe to the list",
+      "mem.h":"Where you can check us",
+      "mem.p":"You don't have to take our word for any of this. Vadimpex holds a trading profile on each platform below, and every one keeps its own independent record of how we deal.",
+      "mem.link":"View profile &rarr;",
+      "mem.desc":["One of the longest-running trading exchanges in the industry.","B2B trading platform and trader directory for the mobile device trade.","International Phone Trade &mdash; member directory and trader verification.","B2B marketplace and trader listing operated by Z Empire Global.","Wholesale marketplace with a public gallery of verified traders."],
+      "mem.rec":["Member since","Company","Trader","Profile","Trader"],
+      "team.h":"The people you'll deal with",
+      "team.p":"A small team in Baden. Call whoever fits your question &mdash; you will get the same person next time.",
+      "team.roles":["CEO / Owner","Sales &amp; Purchase","CTO &amp; Sales","Sales Support","Sales Support","Accounting / Sales Support","Warehouse Manager &amp; RMA"],
+      "team.offh":"Not sure who to ask?","team.offr":"General office",
+      "war.h":"Warranty &amp; returns",
+      "war.p":"Quick, fair, and free of surprises. The full conditions, in plain language, including the three checks that save everyone a wasted shipment.",
+      "war.btn":"Read the conditions",
+      "con.addr":"Address","con.contact":"Contact","con.reg":"Company register","con.country":"Austria",
+      "foot.imp":"Imprint","foot.pri":"Privacy","foot.war":"Warranty &amp; returns",
+      "imp.kicker":"Legal notice","imp.h1":"Imprint",
+      "imp.basis":"Information and disclosure pursuant to &sect;&nbsp;5 E-Commerce-Gesetz (ECG), &sect;&nbsp;14 Unternehmensgesetzbuch (UGB) and &sect;&nbsp;25 Mediengesetz (MedienG).",
+      "imp.rows":[
+        ["Company name","VADIMPEX Handelsges.m.b.H."],
+        ["Legal form","Gesellschaft mit beschr&auml;nkter Haftung (GmbH)"],
+        ["Object of the company","Handelsgewerbe &mdash; wholesale trade in mobile devices, computers and consumer electronics"],
+        ["Registered office","2500 Baden, Austria"],
+        ["Address","Gewerbestrasse 30, 2500 Baden, Austria"],
+        ["Contact","T +43&#8209;1&#8209;6417887&#8209;0 &middot; F +43&#8209;1&#8209;6417887&#8209;99<br><a href=\"mailto:office@vadimpex.com\">office@vadimpex.com</a>"],
+        ["Managing director","Hristo Vassilev"],
+        ["Company register number","FN 117089 s"],
+        ["Company register court","Landesgericht Wiener Neustadt"],
+        ["VAT identification number","ATU38419001"],
+        ["Trade register (GISA)","24185264"],
+        ["Chamber membership","Wirtschaftskammer &Ouml;sterreich (WK&Ouml;) &middot; Wirtschaftskammer Nieder&ouml;sterreich (WKN&Ouml;), Sparte Handel"],
+        ["Trade regulations","Gewerbeordnung 1994 (GewO), free trade &mdash; <a href=\"https://www.ris.bka.gv.at\" target=\"_blank\" rel=\"noopener\">www.ris.bka.gv.at</a>"],
+        ["Supervisory authority","Bezirkshauptmannschaft Baden"]
+      ],
+      "imp.medh":"Media disclosure (&sect; 25 MedienG)",
+      "imp.medp":"Media owner: VADIMPEX Handelsges.m.b.H., registered office 2500 Baden, Austria. Object of the company: Handelsgewerbe. This website presents the company and its products only and is therefore a &bdquo;small website&ldquo; under &sect;&nbsp;25 Abs&nbsp;5 MedienG.",
+      "pri.kicker":"Data protection","pri.h1":"Privacy policy",
+      "pri.basis":"How VADIMPEX Handels GmbH handles personal data, under the General Data Protection Regulation (GDPR) and the Austrian Datenschutzgesetz.",
+      "pri.rows":[
+        ["Who is responsible","VADIMPEX Handelsges.m.b.H., Gewerbestrasse 30, 2500 Baden, Austria.<br><a href=\"mailto:office@vadimpex.com\">office@vadimpex.com</a> &middot; +43&#8209;1&#8209;6417887&#8209;0"],
+        ["When you visit this site","Our hosting provider records the usual server log data &mdash; IP address, browser type and time of request &mdash; which is needed to deliver the page and keep the server secure. We do not combine it with anything else and we do not use it to identify you. Legal basis: legitimate interest, Art&nbsp;6(1)(f) GDPR."],
+        ["Cookies and tracking","This site sets no cookies, runs no analytics and contains no advertising or social media trackers. There is nothing here for you to consent to. The newsletter form is hosted by Mailchimp on their own page &mdash; once you follow that link, their privacy terms apply alongside ours."],
+        ["When you contact us","If you write to us, we process your name, email address and whatever you put in your message, for the sole purpose of answering you and, where it leads to business, managing that relationship. Legal basis: Art&nbsp;6(1)(b) GDPR for pre-contractual steps, otherwise Art&nbsp;6(1)(f)."],
+        ["The stock-list newsletter","Our WTS mailing list is operated for us by Mailchimp (Intuit Inc., USA). If you subscribe, you enter your email address on Mailchimp's form and they process it on our behalf so that we can send you the current selling list, together with basic delivery statistics such as whether a message was opened. Legal basis: your consent, Art&nbsp;6(1)(a) GDPR. You may withdraw it at any time through the unsubscribe link at the foot of every mailing, or by writing to us, with no effect on mailings already sent. Because Mailchimp operates from the United States, your address is transferred there under the EU&ndash;US Data Privacy Framework."],
+        ["How long we keep it","Enquiries that do not lead to business are deleted once they are clearly finished. Newsletter addresses are kept until you unsubscribe. Where a business relationship follows, Austrian commercial and tax law requires us to retain those records for seven years."],
+        ["Who else sees it","Our hosting provider, our email provider, and Mailchimp for the newsletter &mdash; each acting on our instructions. We do not sell personal data and we do not pass it to third parties for their own purposes."],
+        ["Your rights","You may ask us for access to your data, and for correction, deletion, restriction of processing, or portability, and you may object to processing based on legitimate interest (Art&nbsp;15&ndash;21 GDPR). Write to <a href=\"mailto:office@vadimpex.com\">office@vadimpex.com</a> and we will answer within one month."],
+        ["Complaints","You may complain to the Austrian data protection authority: &Ouml;sterreichische Datenschutzbeh&ouml;rde, Barichgasse 40&ndash;42, 1030 Vienna, <a href=\"mailto:dsb@dsb.gv.at\">dsb@dsb.gv.at</a>."]
+      ],
+      "pri.ch":"Changes to this policy",
+      "pri.cp":"If what we collect ever changes &mdash; for example if we add a statistics tool &mdash; this page is updated first."
+    },
+
+    de: {
+      "nav.home":"Start","nav.about":"&Uuml;ber uns","nav.stock":"Verkaufsliste","nav.team":"Team",
+      "nav.mem":"Mitgliedschaften","nav.warranty":"Gew&auml;hrleistung","nav.contact":"Kontakt",
+      "hero.eyebrow":"Gro&szlig;handel &middot; Baden, &Ouml;sterreich &middot; seit 1994",
+      "hero.h1":"Ein Lager in &Ouml;sterreich.<br>" + YEARS + " Jahre im Handel.",
+      "hero.sub":"Vadimpex kauft und verkauft Mobiltelefone, Tablets, Smartwatches, Notebooks und Zubeh&ouml;r &mdash; aus Baden, 30 km s&uuml;dlich von Wien, mit Kunden in ganz Europa, der Freizone Dubai und Hongkong.",
+      "hero.btn1":"Aktuelle Verkaufsliste","hero.btn2":"Kontakt aufnehmen",
+      "cards":[
+        ["Bestand, den Sie pr&uuml;fen k&ouml;nnen","Unsere Verkaufsliste steht online und wird t&auml;glich aktualisiert. Ist eine Position verkauft, verschwindet sie &mdash; Sie kalkulieren also mit echten Zahlen."],
+        ["Bedingungen, die sich nicht &auml;ndern","Gew&auml;hrleistungs- und R&uuml;cknahmebedingungen stehen vollst&auml;ndig und in klarer Sprache online, schon vor dem Kauf. Es kommt sp&auml;ter nichts dazu, was nicht von Anfang an dort stand."],
+        ["Ein Ansprechpartner mit Namen","Sie sprechen mit einer bestimmten Person in Baden, erreichbar per Telefon, E-Mail oder WhatsApp &mdash; kein Sammelpostfach und keine Ticketnummer."]
+      ],
+      "split":[
+        ["Was wir handeln",["Mobiltelefone, Tablets, Smartwatches, Notebooks und Zubeh&ouml;r &mdash; in den Marken, die der Markt tats&auml;chlich nachfragt.","Unsere Ware kommt &uuml;ber etablierte Vertriebswege zu uns: Werkspartien &uuml;ber langj&auml;hrige Zwischenh&auml;ndler sowie Ware aus dem europ&auml;ischen Gro&szlig;handel."]],
+        ["An wen wir verkaufen",["Gro&szlig;h&auml;ndler, unabh&auml;ngige Fachgesch&auml;fte und kleinere Unternehmen. Ein gro&szlig;er Distributor ist uns ebenso willkommen wie ein einzelnes Gesch&auml;ft.","An Endverbraucher verkaufen wir nicht. Wenn Sie ein einzelnes Telefon f&uuml;r sich selbst suchen, sind wir die falsche Adresse &mdash; das sagen wir lieber gleich."]]
+      ],
+      "stock.h":"Aktuelle Verkaufsliste",
+      "stock.p":"Aktueller Bestand, als CSV oder Excel exportierbar, mit einer Schnittstelle (API) f&uuml;r Partner, die die Daten direkt in ihre eigenen Systeme &uuml;bernehmen m&ouml;chten.",
+      "stock.btn":"Liste &ouml;ffnen",
+      "news.h":"Oder per E-Mail erhalten",
+      "news.p":"Wir senden Abonnenten unsere aktuelle WTS-Liste. Eine E-Mail, der Bestand wie er ist, und in jeder ein Abmeldelink.",
+      "news.note":"Kostenlos &middot; jederzeit abbestellbar","news.btn":"Liste abonnieren",
+      "mem.h":"Wo Sie uns &uuml;berpr&uuml;fen k&ouml;nnen",
+      "mem.p":"Sie m&uuml;ssen uns nichts davon einfach glauben. Vadimpex f&uuml;hrt auf jeder der folgenden Plattformen ein H&auml;ndlerprofil, und jede davon f&uuml;hrt ihre eigene, unabh&auml;ngige Aufzeichnung dar&uuml;ber, wie wir handeln.",
+      "mem.link":"Profil ansehen &rarr;",
+      "mem.desc":["Eine der &auml;ltesten Handelsb&ouml;rsen der Branche.","B2B-Handelsplattform und H&auml;ndlerverzeichnis f&uuml;r den Mobilfunkhandel.","International Phone Trade &mdash; Mitgliederverzeichnis und H&auml;ndlerpr&uuml;fung.","B2B-Marktplatz und H&auml;ndlerverzeichnis, betrieben von Z Empire Global.","Gro&szlig;handelsmarktplatz mit &ouml;ffentlicher &Uuml;bersicht gepr&uuml;fter H&auml;ndler."],
+      "mem.rec":["Mitglied seit","Firma","H&auml;ndler","Profil","H&auml;ndler"],
+      "team.h":"Die Menschen, mit denen Sie zu tun haben",
+      "team.p":"Ein kleines Team in Baden. Rufen Sie die Person an, die zu Ihrer Frage passt &mdash; beim n&auml;chsten Mal erreichen Sie dieselbe.",
+      "team.roles":["Gesellschafter-Gesch&auml;ftsf&uuml;hrer","Ein- &amp; Verkauf","CTO &amp; Vertrieb","Vertriebsinnendienst","Vertriebsinnendienst","Buchhaltung / Vertriebsinnendienst","Lagerleitung &amp; RMA"],
+      "team.offh":"Sie wissen nicht, an wen?","team.offr":"Zentrale",
+      "war.h":"Gew&auml;hrleistung &amp; R&uuml;cksendungen",
+      "war.p":"Schnell, fair und ohne &Uuml;berraschungen. Die vollst&auml;ndigen Bedingungen in klarer Sprache &mdash; einschlie&szlig;lich der drei Pr&uuml;fungen, die allen eine unn&ouml;tige Sendung ersparen.",
+      "war.btn":"Bedingungen lesen",
+      "con.addr":"Adresse","con.contact":"Kontakt","con.reg":"Firmenbuch","con.country":"&Ouml;sterreich",
+      "foot.imp":"Impressum","foot.pri":"Datenschutz","foot.war":"Gew&auml;hrleistung",
+      "imp.kicker":"Rechtliche Hinweise","imp.h1":"Impressum",
+      "imp.basis":"Informations- und Offenlegungspflicht gem&auml;&szlig; &sect;&nbsp;5 E-Commerce-Gesetz (ECG), &sect;&nbsp;14 Unternehmensgesetzbuch (UGB) und &sect;&nbsp;25 Mediengesetz (MedienG).",
+      "imp.rows":[
+        ["Firmenwortlaut","VADIMPEX Handelsges.m.b.H."],
+        ["Rechtsform","Gesellschaft mit beschr&auml;nkter Haftung (GmbH)"],
+        ["Unternehmensgegenstand","Handelsgewerbe &mdash; Gro&szlig;handel mit Mobilger&auml;ten, Computern und Unterhaltungselektronik"],
+        ["Firmensitz","2500 Baden, &Ouml;sterreich"],
+        ["Anschrift","Gewerbestra&szlig;e 30, 2500 Baden, &Ouml;sterreich"],
+        ["Kontakt","T +43&#8209;1&#8209;6417887&#8209;0 &middot; F +43&#8209;1&#8209;6417887&#8209;99<br><a href=\"mailto:office@vadimpex.com\">office@vadimpex.com</a>"],
+        ["Gesch&auml;ftsf&uuml;hrer","Hristo Vassilev"],
+        ["Firmenbuchnummer","FN 117089 s"],
+        ["Firmenbuchgericht","Landesgericht Wiener Neustadt"],
+        ["UID-Nummer","ATU38419001"],
+        ["GISA-Zahl","24185264"],
+        ["Kammermitgliedschaft","Wirtschaftskammer &Ouml;sterreich (WK&Ouml;) &middot; Wirtschaftskammer Nieder&ouml;sterreich (WKN&Ouml;), Sparte Handel"],
+        ["Anwendbare Rechtsvorschriften","Gewerbeordnung 1994 (GewO), freies Gewerbe &mdash; <a href=\"https://www.ris.bka.gv.at\" target=\"_blank\" rel=\"noopener\">www.ris.bka.gv.at</a>"],
+        ["Aufsichtsbeh&ouml;rde / Gewerbebeh&ouml;rde","Bezirkshauptmannschaft Baden"]
+      ],
+      "imp.medh":"Offenlegung gem&auml;&szlig; &sect; 25 MedienG",
+      "imp.medp":"Medieninhaber: VADIMPEX Handelsges.m.b.H., Sitz 2500 Baden, &Ouml;sterreich. Unternehmensgegenstand: Handelsgewerbe. Diese Website dient ausschlie&szlig;lich der Pr&auml;sentation des Unternehmens und seiner Produkte und ist daher eine &bdquo;kleine Website&ldquo; im Sinne des &sect;&nbsp;25 Abs&nbsp;5 MedienG.",
+      "pri.kicker":"Datenschutz","pri.h1":"Datenschutzerkl&auml;rung",
+      "pri.basis":"Wie die VADIMPEX Handels GmbH personenbezogene Daten verarbeitet &mdash; nach der Datenschutz-Grundverordnung (DSGVO) und dem &ouml;sterreichischen Datenschutzgesetz.",
+      "pri.rows":[
+        ["Verantwortlicher","VADIMPEX Handelsges.m.b.H., Gewerbestra&szlig;e 30, 2500 Baden, &Ouml;sterreich.<br><a href=\"mailto:office@vadimpex.com\">office@vadimpex.com</a> &middot; +43&#8209;1&#8209;6417887&#8209;0"],
+        ["Beim Besuch dieser Website","Unser Hosting-Anbieter speichert die &uuml;blichen Server-Logdaten &mdash; IP-Adresse, Browsertyp und Zeitpunkt des Abrufs. Diese Daten sind erforderlich, um die Seite auszuliefern und den Server abzusichern. Wir f&uuml;hren sie mit keinen anderen Daten zusammen und verwenden sie nicht, um Sie zu identifizieren. Rechtsgrundlage: berechtigtes Interesse, Art&nbsp;6 Abs&nbsp;1 lit&nbsp;f DSGVO."],
+        ["Cookies und Tracking","Diese Website setzt keine Cookies, verwendet keine Analysewerkzeuge und enth&auml;lt keine Werbe- oder Social-Media-Tracker. Es gibt hier nichts, dem Sie zustimmen m&uuml;ssten. Das Anmeldeformular f&uuml;r den Newsletter wird von Mailchimp auf deren eigener Seite betrieben &mdash; sobald Sie diesem Link folgen, gelten zus&auml;tzlich deren Datenschutzbestimmungen."],
+        ["Wenn Sie uns kontaktieren","Schreiben Sie uns, verarbeiten wir Ihren Namen, Ihre E-Mail-Adresse und den Inhalt Ihrer Nachricht ausschlie&szlig;lich, um Ihnen zu antworten und &mdash; sofern daraus ein Gesch&auml;ft entsteht &mdash; die Gesch&auml;ftsbeziehung abzuwickeln. Rechtsgrundlage: Art&nbsp;6 Abs&nbsp;1 lit&nbsp;b DSGVO f&uuml;r vorvertragliche Ma&szlig;nahmen, sonst Art&nbsp;6 Abs&nbsp;1 lit&nbsp;f."],
+        ["Newsletter mit der Verkaufsliste","Unsere WTS-Verteilerliste wird f&uuml;r uns von Mailchimp (Intuit Inc., USA) betrieben. Wenn Sie sich anmelden, geben Sie Ihre E-Mail-Adresse in das Formular von Mailchimp ein; Mailchimp verarbeitet sie in unserem Auftrag, damit wir Ihnen die aktuelle Verkaufsliste senden k&ouml;nnen, samt einfacher Zustellstatistik, etwa ob eine Nachricht ge&ouml;ffnet wurde. Rechtsgrundlage: Ihre Einwilligung, Art&nbsp;6 Abs&nbsp;1 lit&nbsp;a DSGVO. Sie k&ouml;nnen diese jederzeit &uuml;ber den Abmeldelink am Ende jeder Aussendung oder durch eine Nachricht an uns widerrufen; die Rechtm&auml;&szlig;igkeit bereits erfolgter Aussendungen bleibt davon unber&uuml;hrt. Da Mailchimp von den USA aus t&auml;tig ist, wird Ihre Adresse auf Grundlage des EU-US Data Privacy Framework dorthin &uuml;bermittelt."],
+        ["Speicherdauer","Anfragen, aus denen kein Gesch&auml;ft entsteht, l&ouml;schen wir, sobald sie erkennbar erledigt sind. Newsletter-Adressen speichern wir, bis Sie sich abmelden. Entsteht eine Gesch&auml;ftsbeziehung, verpflichten uns das &ouml;sterreichische Unternehmens- und Steuerrecht, die betreffenden Unterlagen sieben Jahre aufzubewahren."],
+        ["Empf&auml;nger","Unser Hosting-Anbieter, unser E-Mail-Anbieter und Mailchimp f&uuml;r den Newsletter &mdash; jeweils weisungsgebunden f&uuml;r uns t&auml;tig. Wir verkaufen keine personenbezogenen Daten und geben sie nicht zu eigenen Zwecken Dritter weiter."],
+        ["Ihre Rechte","Sie haben das Recht auf Auskunft, Berichtigung, L&ouml;schung, Einschr&auml;nkung der Verarbeitung und Daten&uuml;bertragbarkeit sowie das Recht, einer Verarbeitung auf Grundlage berechtigter Interessen zu widersprechen (Art&nbsp;15&ndash;21 DSGVO). Schreiben Sie an <a href=\"mailto:office@vadimpex.com\">office@vadimpex.com</a>; wir antworten innerhalb eines Monats."],
+        ["Beschwerde","Sie k&ouml;nnen sich bei der &ouml;sterreichischen Datenschutzbeh&ouml;rde beschweren: &Ouml;sterreichische Datenschutzbeh&ouml;rde, Barichgasse 40&ndash;42, 1030 Wien, <a href=\"mailto:dsb@dsb.gv.at\">dsb@dsb.gv.at</a>."]
+      ],
+      "pri.ch":"&Auml;nderungen dieser Erkl&auml;rung",
+      "pri.cp":"Sollte sich &auml;ndern, welche Daten wir verarbeiten &mdash; etwa wenn wir ein Statistikwerkzeug erg&auml;nzen &mdash; wird zuerst diese Seite aktualisiert."
+    }
+  };
+
+  var PLATFORMS = [
+    { name:"gsmExchange", id:"2003",           url:"https://www.gsmexchange.com/en/company/55fd8fa9-b9b6-4e5a-8e95-e94eebcb33fb" },
+    { name:"Handelot",    id:"Vadimpex",       url:"https://platform.handelot.com/reports?page=1&company=Vadimpex" },
+    { name:"IPT",         id:"410",            url:"https://www.ipt.cc/trader-profile/410/details" },
+    { name:"Z Empire",    id:"vadimpex-baden", url:"https://www.b2bze.com/author/vadimpex-baden/" },
+    { name:"GSM&#8209;B2B", id:"1278",         url:"https://gsm-b2b.com/market?traderId=1278" }
+  ];
+
+  var TEAM = [
+    { n:"Mag. Hristo Vassilev", t:"+43 676 9713867",  e:"hristo.vassilev" },
+    { n:"Georgi Filipov, MSc",  t:"+43 676 5777777",  e:"georgi.filipov" },
+    { n:"Nikolay Badjorov",     t:"+43 699 14117733", e:"nikolay.badjorov" },
+    { n:"Kristijan Miletic",    t:"+43 676 4510866",  e:"kristijan.miletic" },
+    { n:"Alexander Ivanov",     t:"+43 676 5888888",  e:"alexander.ivanov" },
+    { n:"Daniela Badjorova",    t:"+43 676 3117733",  e:"daniela.badjorova" },
+    { n:"Stanislav Yordanov",   t:null,               e:"stanislav.yordanov" }
+  ];
+
+  // Destinations are positioned as fractions of the graphic box, not by angle and
+  // radius, so the arc keeps its shape and spacing whatever the hero's proportions
+  // turn out to be. They sweep up from lower left to a peak and down to the right.
+  var DESTS = [
+    { n:"ITALY",       x:0.07,  y:0.395 },
+    { n:"SPAIN",       x:0.16,  y:0.315 },
+    { n:"FRANCE",      x:0.26,  y:0.25  },
+    { n:"UK",          x:0.36,  y:0.20  },
+    { n:"NETHERLANDS", x:0.46,  y:0.145 },
+    { n:"GERMANY",     x:0.57,  y:0.115 },
+    { n:"POLAND",      x:0.66,  y:0.135 },
+    { n:"DUBAI",       x:0.755, y:0.205 },
+    { n:"HONG KONG",   x:0.845, y:0.30  }
+  ];
+  var BADEN = { x:0.78, y:0.88 };
+
+  var lang = "en";
+  function t(k) { return T[lang][k]; }
+
+  /* ---------- rendering ---------- */
+  function el(id) { return document.getElementById(id); }
+
+  function glyph() {
+    var out = "", n = 9;
+    for (var i = 0; i < n; i++) {
+      var a = (-160 + (120 * i) / (n - 1)) * Math.PI / 180;
+      out += '<line x1="' + (20 + Math.cos(a) * 22).toFixed(1) + '" y1="' + (34 + Math.sin(a) * 22).toFixed(1) +
+             '" x2="20" y2="34" stroke="currentColor" stroke-width="1" opacity="' + (i % 3 === 0 ? ".95" : ".4") + '"/>';
+    }
+    return '<g style="color:var(--red)">' + out + '</g>';
+  }
+
+  function fanArt() {
+    var cx = 210, cy = 138, out = "";
+    for (var i = 0; i < 46; i++) {
+      var a = (-172 + 164 * (i / 45)) * Math.PI / 180, acc = i % 6 === 0;
+      out += '<line x1="' + (cx + Math.cos(a) * 300).toFixed(1) + '" y1="' + (cy + Math.sin(a) * 300).toFixed(1) +
+             '" x2="' + cx + '" y2="' + cy + '" stroke="' + (acc ? "var(--red)" : "var(--fan)") +
+             '" stroke-width="' + (acc ? .9 : .5) + '" opacity="' + (acc ? .3 : .14) + '"/>';
+    }
+    return '<svg viewBox="0 0 420 150" preserveAspectRatio="xMidYMax slice" aria-hidden="true">' + out +
+           '<circle cx="' + cx + '" cy="' + cy + '" r="3.2" fill="var(--red)"/></svg>';
+  }
+
+  function renderCards() {
+    el("about").innerHTML = t("cards").map(function (c) {
+      return "<article><h3>" + c[0] + "</h3><p>" + c[1] + "</p></article>";
+    }).join("");
+    el("trade").innerHTML = t("split").map(function (s) {
+      return "<div><h3>" + s[0] + "</h3>" + s[1].map(function (p) { return "<p>" + p + "</p>"; }).join("") + "</div>";
+    }).join("");
+  }
+
+  function renderCreds() {
+    var ul = el("creds");
+    ul.innerHTML = PLATFORMS.map(function (p, i) {
+      return '<li class="cred"><svg class="glyph" viewBox="0 0 40 40" aria-hidden="true">' + glyph() + "</svg>" +
+        "<h3>" + p.name + "</h3><p>" + t("mem.desc")[i] + "</p>" +
+        '<div class="rec">' + t("mem.rec")[i] + "<b>" + p.id + "</b></div>" +
+        '<a href="' + p.url + '" target="_blank" rel="noopener">' + t("mem.link") + "</a></li>";
+    }).join("");
+    padGrid(ul, PLATFORMS.length, "cred");
+  }
+
+  function renderTeam() {
+    var ul = el("roster");
+    ul.innerHTML = TEAM.map(function (p, i) {
+      var c = (p.t ? 'T <a href="tel:' + p.t.replace(/\s/g, "") + '">' + p.t + "</a><br>" : "") +
+              '<a href="mailto:' + p.e + '@vadimpex.com">' + p.e + "@vadimpex.com</a>";
+      return '<li><p class="nm">' + p.n + '</p><p class="rl">' + t("team.roles")[i] + '</p><p class="ct">' + c + "</p></li>";
+    }).join("") +
+      '<li class="office"><p class="nm">' + t("team.offh") + '</p><p class="rl">' + t("team.offr") +
+      '</p><p class="ct">T <a href="tel:+43164178870">+43&#8209;1&#8209;6417887&#8209;0</a><br>' +
+      '<a href="mailto:office@vadimpex.com">office@vadimpex.com</a></p></li>';
+    padGrid(ul, TEAM.length + 1, "art", fanArt());
+  }
+
+  function padGrid(ul, count, cls, inner) {
+    [].forEach.call(ul.querySelectorAll(".filler,.art"), function (f) { ul.removeChild(f); });
+    var cols = getComputedStyle(ul).gridTemplateColumns.split(" ").filter(Boolean).length;
+    var missing = (cols - (count % cols)) % cols;
+    if (!missing) return;
+    if (cls === "art") {
+      var a = document.createElement("li");
+      a.className = "art"; a.style.gridColumn = "span " + missing;
+      a.setAttribute("aria-hidden", "true"); a.innerHTML = inner;
+      ul.appendChild(a);
+    } else {
+      for (var i = 0; i < missing; i++) {
+        var f = document.createElement("li");
+        f.className = "cred filler"; f.setAttribute("aria-hidden", "true");
+        ul.appendChild(f);
+      }
+    }
+  }
+
+  function renderRows(id, key) {
+    el(id).innerHTML = t(key).map(function (r) {
+      return "<div><dt>" + r[0] + "</dt><dd>" + r[1] + "</dd></div>";
+    }).join("");
+  }
+
+  var routeRetries = 0;
+  function renderRoutes() {
+    var svg = el("routes");
+    var art = document.querySelector(".heroart").getBoundingClientRect();
+    // On first paint the box can still measure zero. Waiting a frame and trying
+    // again is the difference between the map drawing and the hero staying blank
+    // until the visitor happens to resize the window.
+    if (!art.width || !art.height) {
+      if (routeRetries++ < 60) requestAnimationFrame(renderRoutes);
+      return;
+    }
+    routeRetries = 0;
+
+    // The viewBox tracks the box's real proportions, so the composition holds on a
+    // tall phone and on a wide monitor without stretching or cropping.
+    var W = 900, H = Math.round(W * art.height / art.width);
+    svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+    svg.innerHTML = "";
+
+    var cs = getComputedStyle(document.documentElement);
+    var FAN = cs.getPropertyValue("--fan").trim() || "#22282A";
+    var ARC = cs.getPropertyValue("--arc").trim() || "#C9B8B0";
+    var RED = cs.getPropertyValue("--red").trim() || "#E31F28";
+    var SOFT = cs.getPropertyValue("--soft").trim() || "#5F6769";
+    var INK = cs.getPropertyValue("--ink").trim() || "#22282A";
+    var NS = "http://www.w3.org/2000/svg";
+    function mk(n, a) { var e = document.createElementNS(NS, n); for (var k in a) e.setAttribute(k, a[k]); return e; }
+
+    var cx = W * BADEN.x, cy = H * BADEN.y;
+    var reach = Math.max(W, H) * 1.9;
+
+    // Label size is decided in real screen pixels and then converted into viewBox
+    // units. Sizing it in viewBox units alone makes the names grow with the
+    // container -- on a wide monitor they ended up as large as the wordmark, and
+    // on a phone they shrank to about 5px.
+    var pxPerUnit = art.width / W;
+    var targetPx = Math.max(10, Math.min(13, art.width / 130));
+    var type = targetPx / pxPerUnit;
+    var dotR = Math.max(1.6, type * 0.26);
+
+    [0.13, 0.24, 0.36, 0.50, 0.65].forEach(function (f, i) {
+      var c = mk("circle", { cx: cx, cy: cy, r: W * f, fill: "none", stroke: ARC,
+                             "stroke-width": ".9", opacity: ".5", "class": "ray" });
+      c.style.animationDelay = (i * 80) + "ms"; svg.appendChild(c);
+    });
+
+    for (var i = 0; i < 80; i++) {
+      var ang = (-179 + 174 * (i / 79)) * Math.PI / 180, acc = i % 10 === 0;
+      var l = mk("line", { x1: cx + Math.cos(ang) * reach, y1: cy + Math.sin(ang) * reach, x2: cx, y2: cy,
+                           stroke: acc ? RED : FAN, "stroke-width": acc ? .8 : .5,
+                           opacity: acc ? .26 : .1, "class": "ray" });
+      l.style.animationDelay = (i * 6) + "ms"; svg.appendChild(l);
+    }
+
+    // keep every label clear of the copy panel that overlaps the lower left
+    var card = document.querySelector(".herocard-inner");
+    var cardRight = W, cardTop = H;
+    if (getComputedStyle(document.querySelector(".herocard")).position === "absolute") {
+      var cb = card.getBoundingClientRect();
+      cardRight = (cb.right - art.left) * (W / art.width);
+      cardTop = (cb.top - art.top) * (H / art.height) - type * 2.2;
+    }
+
+    // Every route keeps its line and dot; only the names are dropped when there is
+    // genuinely no room for them, which is what happens on a phone.
+    var placed = [];
+    DESTS.forEach(function (d, i) {
+      var x = W * d.x, y = H * d.y;
+      if (x < cardRight && y > cardTop) y = Math.max(type * 2.2, cardTop);
+      var ln = mk("line", { x1: x, y1: y, x2: cx, y2: cy, stroke: RED,
+                            "stroke-width": 1.1, opacity: .8, "class": "ray" });
+      ln.style.animationDelay = (420 + i * 50) + "ms"; svg.appendChild(ln);
+      // The dots and the country names are deliberately NOT animated. On the
+      // machine where this first went wrong, the only label that appeared was the
+      // one without an animation, so nothing that carries meaning depends on one.
+      svg.appendChild(mk("circle", { cx: x, cy: y, r: dotR, fill: RED }));
+
+      var half = d.n.length * type * 0.74 / 2;   // mono advance plus letter-spacing
+      var ty = y - type * 1.15;
+      var box = { x0: x - half, x1: x + half, y: ty };
+      var clash = placed.some(function (p) {
+        return box.x1 + type * 0.6 > p.x0 && p.x1 + type * 0.6 > box.x0 &&
+               Math.abs(box.y - p.y) < type * 1.8;
+      });
+      if (clash) return;
+      placed.push(box);
+      var tx = mk("text", { x: x, y: ty, "text-anchor": "middle",
+                            "font-family": "IBM Plex Mono, monospace", "font-size": type,
+                            "letter-spacing": type * 0.14, fill: SOFT });
+      tx.textContent = d.n; svg.appendChild(tx);
+    });
+
+    svg.appendChild(mk("circle", { cx: cx, cy: cy, r: type * 1.3, fill: "none", stroke: RED, "stroke-width": "1.2", opacity: ".55" }));
+    svg.appendChild(mk("circle", { cx: cx, cy: cy, r: type * 0.5, fill: RED }));
+
+    // Baden normally sits to the right of its node; on a narrow screen there is no
+    // room there, so the label flips to the left rather than running off the edge.
+    var badenText = "BADEN, AT";
+    var badenW = badenText.length * type * 1.12 * 0.74;
+    var toLeft = cx + type * 2 + badenW > W - type;
+    var lbl = mk("text", {
+      x: toLeft ? cx - type * 1.8 : cx + type * 2,
+      y: cy + type * 0.45,
+      "text-anchor": toLeft ? "end" : "start",
+      "font-family": "IBM Plex Mono, monospace",
+      "font-size": type * 1.12, "letter-spacing": type * 0.2, fill: INK
+    });
+    lbl.textContent = badenText; svg.appendChild(lbl);
+
+    svg.setAttribute("aria-label", lang === "de"
+      ? "Handelsrouten aus unseren Hauptmärkten, die in Baden zusammenlaufen"
+      : "Trade routes from our main markets converging on Baden, Austria");
+  }
+
+  function applyLang() {
+    document.documentElement.lang = lang;
+    [].forEach.call(document.querySelectorAll("[data-t]"), function (e) {
+      e.innerHTML = t(e.getAttribute("data-t"));
+    });
+    renderCards(); renderCreds(); renderTeam();
+    renderRows("imp-rows", "imp.rows");
+    renderRows("pri-rows", "pri.rows");
+    el("l-en").setAttribute("aria-pressed", String(lang === "en"));
+    el("l-de").setAttribute("aria-pressed", String(lang === "de"));
+    renderRoutes();
+  }
+
+  /* ---------- theme ---------- */
+  var SUN = '<circle cx="12" cy="12" r="4.5"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path>';
+  var MOON = '<path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"></path>';
+  function isDark() {
+    var s = document.documentElement.getAttribute("data-theme");
+    if (s) return s === "dark";
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  }
+  function paintThemeIcon() { el("theme").querySelector("svg").innerHTML = isDark() ? MOON : SUN; }
+  el("theme").addEventListener("click", function () {
+    document.documentElement.setAttribute("data-theme", isDark() ? "light" : "dark");
+    paintThemeIcon(); renderRoutes();
+  });
+
+  /* ---------- routing ---------- */
+  function route() {
+    var h = location.hash;
+    var page = h === "#/imprint" ? "imprint" : h === "#/privacy" ? "privacy" : "home";
+    ["home", "imprint", "privacy"].forEach(function (p) {
+      el("page-" + p).hidden = p !== page;
+    });
+    if (page !== "home") window.scrollTo(0, 0);
+    else if (h && h.length > 1 && h !== "#/") {
+      var target = document.querySelector(h);
+      if (target) target.scrollIntoView();
+    }
+    el("nav").classList.remove("open");
+    el("burger").setAttribute("aria-expanded", "false");
+  }
+  window.addEventListener("hashchange", route);
+
+  el("burger").addEventListener("click", function () {
+    var open = el("nav").classList.toggle("open");
+    this.setAttribute("aria-expanded", String(open));
+  });
+  el("l-en").addEventListener("click", function () { lang = "en"; applyLang(); });
+  el("l-de").addEventListener("click", function () { lang = "de"; applyLang(); });
+
+  var rt;
+  window.addEventListener("resize", function () {
+    clearTimeout(rt);
+    rt = setTimeout(function () { renderCreds(); renderTeam(); renderRoutes(); }, 150);
+  });
+
+  el("yr").textContent = new Date().getFullYear();
+  paintThemeIcon();
+  applyLang();
+  route();
+  // Fonts change text metrics and a late layout changes the hero's box. The
+  // visibility hook matters for a link opened in a background tab: there the
+  // browser freezes requestAnimationFrame and can report a zero-sized box, so the
+  // map is drawn when the tab is actually looked at.
+  window.addEventListener("load", renderRoutes);
+  document.addEventListener("visibilitychange", function () {
+    if (!document.hidden) renderRoutes();
+  });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(renderRoutes);
+})();
+</script>
