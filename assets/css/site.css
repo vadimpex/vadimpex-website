@@ -284,3 +284,16 @@ section[id]{scroll-margin-top:74px;}   /* the header is sticky */
    old site's agency credit was. */
 .ftr .sig{flex-basis:100%;text-align:right;opacity:.5;font-size:.62rem;}
 @media(max-width:640px){.ftr .sig{text-align:left;}}
+
+/* Consent checkbox: a real, unticked box the visitor has to choose. It carries
+   the Mailchimp GDPR permission that was previously a hidden pre-set field. */
+.frm .consent{margin-top:2px;}
+.frm .consent label{
+  display:flex;flex-direction:row;align-items:flex-start;gap:11px;cursor:pointer;
+  font-family:'IBM Plex Sans','Segoe UI',system-ui,sans-serif;
+  font-size:.85rem;letter-spacing:0;text-transform:none;color:var(--ink);line-height:1.5;
+}
+.frm .consent input{
+  appearance:auto;width:17px;height:17px;flex:none;margin:2px 0 0;padding:0;
+  accent-color:var(--red-act);cursor:pointer;
+}

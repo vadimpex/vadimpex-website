@@ -101,7 +101,12 @@
           <label for="f-phone">Phone <span class="req" aria-hidden="true">*</span></label>
           <input id="f-phone" type="tel" name="PHONE" autocomplete="tel" required>
         </div>
-        <input type="hidden" name="gdpr[34087]" value="Y">
+        <div class="field full consent">
+          <label for="f-gdpr">
+            <input id="f-gdpr" type="checkbox" name="gdpr[34087]" value="Y" required>
+            <span>Yes, send me the WTS stock list by email. I can unsubscribe from any message.</span>
+          </label>
+        </div>
         <!-- real people never see or fill this field -->
         <div style="position:absolute;left:-5000px" aria-hidden="true">
           <input type="text" name="b_b38bc7b0c590108889c2d9485_55d5bde0cf" tabindex="-1" value="">
@@ -111,8 +116,8 @@
           <span class="url">Free &middot; unsubscribe any time</span>
         </div>
         <p class="submsg full" id="submsg" role="status" aria-live="polite" hidden></p>
-        <p class="subfine full">By subscribing you agree that we store the details above to send
-           you the stock list. Details in our <a href="/privacy/">privacy policy</a>.</p>
+        <p class="subfine full">We store the details above only to send you the stock list.
+           See our <a href="/privacy/">privacy policy</a>.</p>
       </form>
     </div>
   </div>
@@ -154,7 +159,9 @@
     var q=[],el;
     for(var i=0;i<f.elements.length;i++){
       el=f.elements[i];
-      if(el.name)q.push(encodeURIComponent(el.name)+'='+encodeURIComponent(el.value));
+      if(!el.name)continue;
+      if((el.type==='checkbox'||el.type==='radio')&&!el.checked)continue;
+      q.push(encodeURIComponent(el.name)+'='+encodeURIComponent(el.value));
     }
     var cb='vpxsub_'+Date.now(),
         src=f.action.replace('/subscribe/post?','/subscribe/post-json?')+'&'+q.join('&')+'&c='+cb,

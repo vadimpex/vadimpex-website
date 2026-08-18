@@ -101,7 +101,12 @@
           <label for="f-phone">Telefon <span class="req" aria-hidden="true">*</span></label>
           <input id="f-phone" type="tel" name="PHONE" autocomplete="tel" required>
         </div>
-        <input type="hidden" name="gdpr[34087]" value="Y">
+        <div class="field full consent">
+          <label for="f-gdpr">
+            <input id="f-gdpr" type="checkbox" name="gdpr[34087]" value="Y" required>
+            <span>Ja, senden Sie mir die WTS-Verkaufsliste per E-Mail. Ich kann mich &uuml;ber jede Nachricht wieder abmelden.</span>
+          </label>
+        </div>
         <!-- Dieses Feld sehen echte Besucher nie -->
         <div style="position:absolute;left:-5000px" aria-hidden="true">
           <input type="text" name="b_b38bc7b0c590108889c2d9485_55d5bde0cf" tabindex="-1" value="">
@@ -111,8 +116,8 @@
           <span class="url">Kostenlos &middot; jederzeit abbestellbar</span>
         </div>
         <p class="submsg full" id="submsg" role="status" aria-live="polite" hidden></p>
-        <p class="subfine full">Mit dem Abonnement stimmen Sie zu, dass wir die obigen Angaben zum
-           Versand der Verkaufsliste speichern. Details in unserer
+        <p class="subfine full">Wir speichern die obigen Angaben ausschlie&szlig;lich f&uuml;r den
+           Versand der Verkaufsliste. Siehe unsere
            <a href="/de/datenschutz/">Datenschutzerkl&auml;rung</a>.</p>
       </form>
     </div>
@@ -155,7 +160,9 @@
     var q=[],el;
     for(var i=0;i<f.elements.length;i++){
       el=f.elements[i];
-      if(el.name)q.push(encodeURIComponent(el.name)+'='+encodeURIComponent(el.value));
+      if(!el.name)continue;
+      if((el.type==='checkbox'||el.type==='radio')&&!el.checked)continue;
+      q.push(encodeURIComponent(el.name)+'='+encodeURIComponent(el.value));
     }
     var cb='vpxsub_'+Date.now(),
         src=f.action.replace('/subscribe/post?','/subscribe/post-json?')+'&'+q.join('&')+'&c='+cb,
