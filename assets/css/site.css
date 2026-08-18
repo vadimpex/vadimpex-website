@@ -235,3 +235,9 @@ section[id]{scroll-margin-top:74px;}   /* the header is sticky */
 .ray{opacity:1;animation:fade .7s ease-out backwards;}
 @keyframes fade{from{opacity:0;}}
 @media(prefers-reduced-motion:reduce){.ray{animation:none;}}
+
+/* A quiet in-house credit. Deliberately on its own line and away from the
+   copyright, so it can never be mistaken for a claim of ownership the way the
+   old site's agency credit was. */
+.ftr .sig{flex-basis:100%;text-align:right;opacity:.5;font-size:.62rem;}
+@media(max-width:640px){.ftr .sig{text-align:left;}}
