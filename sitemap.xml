@@ -17,6 +17,22 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://vadimpex.com/"/>
   </url>
   <url>
+    <loc>https://vadimpex.com/subscribe/</loc>
+    <lastmod>2026-08-18</lastmod>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vadimpex.com/subscribe/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vadimpex.com/de/abonnieren/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vadimpex.com/subscribe/"/>
+  </url>
+  <url>
+    <loc>https://vadimpex.com/de/abonnieren/</loc>
+    <lastmod>2026-08-18</lastmod>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vadimpex.com/subscribe/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://vadimpex.com/de/abonnieren/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vadimpex.com/subscribe/"/>
+  </url>
+  <url>
     <loc>https://vadimpex.com/imprint/</loc>
     <lastmod>2026-08-17</lastmod>
     <priority>0.3</priority>
