@@ -102,6 +102,26 @@
   var NS = "http://www.w3.org/2000/svg";
   var retries = 0;
 
+  /* Labels sit on a small plate of the page colour. The lines converge on Baden,
+     so without it the busiest part of the drawing runs straight through the most
+     important word on the graphic. */
+  function plateLabel(svg, attrs, text, pad, paper) {
+    var t = mk("text", attrs);
+    t.textContent = text;
+    svg.appendChild(t);
+    var b;
+    try { b = t.getBBox(); } catch (e) { return t; }   // no layout yet: skip the plate
+    if (!b || !b.width) return t;
+    var r = mk("rect", {
+      x: b.x - pad, y: b.y - pad * 0.55,
+      width: b.width + pad * 2, height: b.height + pad * 1.1,
+      fill: paper
+    });
+    svg.insertBefore(r, t);
+    return t;
+  }
+
+
   function mk(n, attrs) {
     var e = document.createElementNS(NS, n);
     for (var k in attrs) e.setAttribute(k, attrs[k]);
@@ -133,6 +153,7 @@
     var RED = cs.getPropertyValue("--red").trim() || "#E31F28";
     var SOFT = cs.getPropertyValue("--soft").trim() || "#5F6769";
     var INK = cs.getPropertyValue("--ink").trim() || "#22282A";
+    var PAPER = cs.getPropertyValue("--paper").trim() || "#F7F4F2";
 
     var cx = W * BADEN.x, cy = H * BADEN.y;
     var reach = Math.max(W, H) * 1.9;
@@ -193,11 +214,10 @@
       });
       if (clash) return;              // no room: the route still shows, the name steps aside
       placed.push(box);
-      var tx = mk("text", { x: x, y: ty, "text-anchor": "middle",
-                            "font-family": "IBM Plex Mono, monospace", "font-size": type,
-                            "letter-spacing": type * 0.14, fill: SOFT });
-      tx.textContent = name;
-      svg.appendChild(tx);
+      plateLabel(svg, { x: x, y: ty, "text-anchor": "middle",
+                        "font-family": "IBM Plex Mono, monospace", "font-size": type,
+                        "letter-spacing": type * 0.14, fill: SOFT },
+                 name, type * 0.42, PAPER);
     });
 
     svg.appendChild(mk("circle", { cx: cx, cy: cy, r: type * 1.3, fill: "none",
@@ -205,17 +225,17 @@
     svg.appendChild(mk("circle", { cx: cx, cy: cy, r: type * 0.5, fill: RED }));
 
     // Baden sits right of its node, or flips left when there is no room
-    var badenW = homeLabel.length * type * 1.12 * 0.74;
-    var toLeft = cx + type * 2 + badenW > W - type;
-    var lbl = mk("text", {
-      x: toLeft ? cx - type * 1.8 : cx + type * 2,
+    var badenSize = type * 1.12;
+    var badenW = homeLabel.length * badenSize * 0.74;
+    var gap = type * 2.9;                      // clear of the node ring and the fan
+    var toLeft = cx + gap + badenW > W - type;
+    plateLabel(svg, {
+      x: toLeft ? cx - gap : cx + gap,
       y: cy + type * 0.45,
       "text-anchor": toLeft ? "end" : "start",
       "font-family": "IBM Plex Mono, monospace",
-      "font-size": type * 1.12, "letter-spacing": type * 0.2, fill: INK
-    });
-    lbl.textContent = homeLabel;
-    svg.appendChild(lbl);
+      "font-size": badenSize, "letter-spacing": type * 0.2, fill: INK
+    }, homeLabel, type * 0.7, PAPER);
   }
 
   /* ------------------------------------------------------------ lifecycle */
