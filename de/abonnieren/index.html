@@ -165,7 +165,11 @@
       q.push(encodeURIComponent(el.name)+'='+encodeURIComponent(el.value));
     }
     var cb='vpxsub_'+Date.now(),
-        src=f.action.replace('/subscribe/post?','/subscribe/post-json?')+'&'+q.join('&')+'&c='+cb,
+        /* Als Muster gesucht, nicht als Pfad ausgeschrieben: ein wörtliches
+           '/subscribe/post' liest Googlebot als eigenen Link, ruft es auf
+           dieser Domain ab und meldet es in der Search Console als 404.
+           Der Endpunkt selbst bleibt unverändert. */
+        src=f.action.replace(/post\?/,'post-json?')+'&'+q.join('&')+'&c='+cb,
         s=document.createElement('script'),
         timer=setTimeout(function(){done();f.submit();},8000);
     window[cb]=function(res){

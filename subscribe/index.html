@@ -164,7 +164,11 @@
       q.push(encodeURIComponent(el.name)+'='+encodeURIComponent(el.value));
     }
     var cb='vpxsub_'+Date.now(),
-        src=f.action.replace('/subscribe/post?','/subscribe/post-json?')+'&'+q.join('&')+'&c='+cb,
+        /* Matched as a pattern, not written out as a path: a literal
+           '/subscribe/post' here reads to Googlebot as a link of ours and
+           gets crawled against this domain, landing in Search Console as
+           a 404. The endpoint itself is unchanged. */
+        src=f.action.replace(/post\?/,'post-json?')+'&'+q.join('&')+'&c='+cb,
         s=document.createElement('script'),
         timer=setTimeout(function(){done();f.submit();},8000); /* fall back to plain POST */
     window[cb]=function(res){
